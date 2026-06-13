@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個人開発Lab｜LP・WordPress制作</title>
+<meta name="description" content="中小企業・個人事業主向けのLP・WordPress制作。Claude Codeで速く作り、後から自動化も足せる個人開発の工房です。LP 5万円〜／WPサイト 10万円〜。">
+<meta property="og:title" content="個人開発Lab｜LP・WordPress制作">
+<meta property="og:description" content="Claude Codeで速く作って、後から自動化も足せる。中小企業・個人事業主のためのLP・WordPress制作。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">&lt;/&gt;</span>
+      <span class="brand-name">個人開発<span class="accent-text">Lab</span></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="メインナビ">
+      <a href="#services">サービス</a>
+      <a href="#works">制作実績</a>
+      <a href="#flow">制作の流れ</a>
+      <a href="#contact" class="nav-cta">相談する</a>
+    </nav>
+    <button class="nav-toggle" aria-label="メニュー" id="navToggle"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <p class="hero-eyebrow reveal"><span class="mono blink-cursor">$</span> LP・WordPress 制作 / 個人開発</p>
+      <h1 class="hero-title reveal">自分でアプリを作るエンジニアの、<br><span class="accent-text gradient-animate">Web制作屋</span>です。</h1>
+      <p class="hero-sub reveal">
+        自分でWebサービスやアプリを作って運用している個人開発者です。<br>
+        その実装力で、中小企業・個人事業主のLP・WordPressサイトを<strong>速く・安く・後から拡張できる形</strong>で制作します。
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#contact" class="btn btn-primary"><span>無料で相談する</span></a>
+        <a href="#works" class="btn btn-ghost"><span>制作実績を見る</span></a>
+      </div>
+      <ul class="hero-badges reveal">
+        <li><span class="dot"></span>Claude Code で高速納品</li>
+        <li><span class="dot"></span>LP 最短3〜5日</li>
+        <li><span class="dot"></span>納品後の自動化もOK</li>
+      </ul>
+    </div>
+    <div class="scroll-hint" aria-hidden="true"><span></span></div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>LP制作</span><span class="sep">✦</span><span>WordPress</span><span class="sep">✦</span><span>業務自動化</span><span class="sep">✦</span><span>サイトリニューアル</span><span class="sep">✦</span><span>表示速度改善</span><span class="sep">✦</span><span>予約フォーム</span><span class="sep">✦</span>
+      <span>LP制作</span><span class="sep">✦</span><span>WordPress</span><span class="sep">✦</span><span>業務自動化</span><span class="sep">✦</span><span>サイトリニューアル</span><span class="sep">✦</span><span>表示速度改善</span><span class="sep">✦</span><span>予約フォーム</span><span class="sep">✦</span>
+    </div>
+  </div>
+
+  <section class="section" id="services">
+    <div class="container">
+      <p class="section-eyebrow reveal">SERVICES</p>
+      <h2 class="section-title reveal">できること</h2>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-icon">LP</div>
+          <h3>ランディングページ制作</h3>
+          <p>商品・サービスの魅力を1枚で伝えるLP。問い合わせフォーム・地図・SNS連携・アクセス解析まで標準対応。</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon">WP</div>
+          <h3>WordPressサイト制作</h3>
+          <p>自分で更新できるコーポレートサイト・店舗サイト。自前の軽量テーマで、表示速度と保守性を両立。</p>
+        </article>
+        <article class="card card-accent reveal">
+          <div class="card-icon card-icon-app">APP</div>
+          <h3>Webアプリ開発</h3>
+          <p>ブラウザだけで動くWebアプリ・業務ツールを開発します。データの可視化・集計、入力フォーム、CSV連携など、「ホームページ」より一歩踏み込んだ仕組みも作れます。</p>
+        </article>
+      </div>
+      <p class="services-note reveal">料金はご相談のうえお見積りします。ご予算・ご要望に合わせてご提案しますので、まずはお気軽にどうぞ。</p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="why">
+    <div class="container">
+      <p class="section-eyebrow reveal">WHY</p>
+      <h2 class="section-title reveal">選ばれる理由</h2>
+      <div class="reasons">
+        <div class="reason reveal">
+          <span class="reason-num">01</span>
+          <h3>速い</h3>
+          <p>Claude Code を使い、コピー案・デザイン案・実装を並行で進めます。LPなら最短3〜5日で形にします。</p>
+        </div>
+        <div class="reason reveal">
+          <span class="reason-num">02</span>
+          <h3>後から拡張できる</h3>
+          <p>「作って終わり」にしません。半年後に予約フォームやデータ連携を足したくなっても、新規発注より安く対応できます。</p>
+        </div>
+        <div class="reason reveal">
+          <span class="reason-num">03</span>
+          <h3>実物で証明できる</h3>
+          <p>自分で企画・実装・運用しているWebサービスがあります。「ちゃんと動くものを完成させる人」だと、実物で判断いただけます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="works">
+    <div class="container">
+      <p class="section-eyebrow reveal">WORKS</p>
+      <h2 class="section-title reveal">制作実績・自社プロダクト</h2>
+      <p class="section-lead reveal">受託の前に、まず自分で作って運用しています。同じ熱量で、御社のサイトを作ります。</p>
+      <div class="works">
+        <a class="work reveal" href="https://usaginavi.jp" target="_blank" rel="noopener">
+          <div class="work-thumb work-thumb-usanavi">
+            <span class="work-emoji">🐰</span>
+            <span class="work-shine"></span>
+          </div>
+          <div class="work-body">
+            <h3>うさナビ <span class="work-arrow">↗</span></h3>
+            <p>うさぎ飼いのための情報サイト。品種図鑑・食材判定60品目・全国の動物病院189件を掲載。PWA・ダークモード対応で実運用中。</p>
+            <p class="work-tags"><span>情報サイト</span><span>PWA</span><span>自社運営</span></p>
+          </div>
+        </a>
+        <a class="work reveal" href="https://kazuma0604.github.io/kakeibo/" target="_blank" rel="noopener">
+          <div class="work-thumb work-thumb-kakeibo">
+            <span class="work-emoji">📊</span>
+            <span class="work-shine"></span>
+          </div>
+          <div class="work-body">
+            <h3>家計簿アプリ <span class="work-arrow">↗</span></h3>
+            <p>登録不要・広告なしの家計簿。CSVインポート、カテゴリ別グラフ、月末予測まで。データは端末内のみで安心。</p>
+            <p class="work-tags"><span>Webアプリ</span><span>Chart.js</span><span>OSS</span></p>
+          </div>
+        </a>
+      </div>
+      <p class="works-note reveal">※ クライアント案件は守秘のため非掲載のものもあります。具体例はご相談時にお見せします。</p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="flow">
+    <div class="container">
+      <p class="section-eyebrow reveal">FLOW</p>
+      <h2 class="section-title reveal">制作の流れ</h2>
+      <ol class="flow">
+        <li class="flow-step reveal"><span class="flow-num">1</span><div><h3>ご相談（無料）</h3><p>DMやフォームで、やりたいこと・お困りごとをヒアリング。イメージだけでもOKです。</p></div></li>
+        <li class="flow-step reveal"><span class="flow-num">2</span><div><h3>お見積り</h3><p>要件を整理して、固定金額でご提示。LPなら即日〜2営業日で。</p></div></li>
+        <li class="flow-step reveal"><span class="flow-num">3</span><div><h3>制作</h3><p>途中で実物を見ていただきながら進めます。認識のズレを早めに解消。</p></div></li>
+        <li class="flow-step reveal"><span class="flow-num">4</span><div><h3>納品・操作説明</h3><p>公開対応と、更新方法のレクチャー。ここまでで完了です。</p></div></li>
+        <li class="flow-step reveal"><span class="flow-num">5</span><div><h3>運用保守（任意）</h3><p>更新代行・小改修・自動化追加を月額で。必要な方だけどうぞ。</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section-contact" id="contact">
+    <div class="contact-glow" aria-hidden="true"></div>
+    <div class="container contact-inner">
+      <p class="section-eyebrow reveal">CONTACT</p>
+      <h2 class="section-title reveal">まずは気軽にご相談を</h2>
+      <p class="contact-lead reveal">
+        「こんなサイトが欲しい」のイメージだけで大丈夫です。<br>
+        参考サイトのURLや、今のサイトのスクショだけでもOK。ご相談・お見積りは無料です。
+      </p>
+      <div class="hero-actions reveal">
+        <a href="https://x.com/kojin_lab" target="_blank" rel="noopener" class="btn btn-primary btn-lg"><span>X（@kojin_lab）でDM相談</span></a>
+      </div>
+      <p class="contact-note reveal">できない案件もはっきりお伝えします。「できる／できない」の判断だけでもお役に立てます。</p>
+    </div>
+  </section>
+
+</main>
+
+<a href="#contact" class="fab" id="fab" aria-label="相談する">
+  <span class="fab-icon">✉</span><span class="fab-text">相談する</span>
+</a>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="brand">
+      <span class="brand-mark">&lt;/&gt;</span>
+      <span class="brand-name">個人開発<span class="accent-text">Lab</span></span>
+    </div>
+    <p class="footer-text">LP・WordPress制作 / 個人開発<br>Claude Code で速く、後から自動化も。</p>
+    <p class="footer-copy">© 2026 個人開発Lab</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
