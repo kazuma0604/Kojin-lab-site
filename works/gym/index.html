@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REBUILD｜結果にコミットするパーソナルジム</title>
+<meta name="description" content="REBUILDは完全個室・マンツーマンのパーソナルジム。専属トレーナーと管理栄養士が、あなたの「なりたい」を最短で実現します。無料カウンセリング受付中。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0d10; --bg2:#141519; --card:#16181d; --line:#26282f;
+  --txt:#f4f5f7; --muted:#9aa0ab; --lime:#c6f04a; --lime-d:#a8d62f; --orange:#ff5a2c;
+  --disp:"Anton",sans-serif; --sans:"Noto Sans JP",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--txt);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.disp{font-family:var(--disp);font-weight:400;letter-spacing:1px}
+.demo-ribbon{position:fixed;top:14px;left:-42px;transform:rotate(-45deg);background:var(--orange);color:#fff;font-size:11px;letter-spacing:1px;padding:5px 50px;z-index:300;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.4s}
+header.scd{background:rgba(12,13,16,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:var(--disp);font-size:26px;letter-spacing:3px}
+.logo i{color:var(--lime);font-style:normal}
+.gnav{display:flex;gap:28px;align-items:center}
+.gnav a{font-size:14px;font-weight:500;color:var(--muted);transition:.25s}
+.gnav a:hover{color:var(--txt)}
+.gbtn{background:var(--lime);color:#0c0d10!important;padding:11px 22px;border-radius:6px;font-weight:700;font-size:13px}
+.gbtn:hover{background:var(--lime-d)}
+.mtoggle{display:none;font-size:24px;background:none;border:0;color:var(--txt);cursor:pointer}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:100px 0 60px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 30%,rgba(198,240,74,.12),transparent 55%),radial-gradient(circle at 10% 80%,rgba(255,90,44,.10),transparent 50%)}
+.hero-inner{position:relative;max-width:760px}
+.tagpill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:7px 18px;font-size:13px;color:var(--lime);margin-bottom:26px;letter-spacing:1px}
+.hero h1{font-family:var(--disp);font-size:clamp(44px,9vw,104px);line-height:.98;letter-spacing:2px;margin-bottom:24px}
+.hero h1 .o{color:var(--orange)}
+.hero .lead{font-size:clamp(15px,2vw,19px);color:var(--muted);max-width:560px;margin-bottom:38px}
+.hero .lead b{color:var(--txt);font-weight:700}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:16px 34px;border-radius:8px;font-weight:700;font-size:15px;transition:.25s}
+.btn-fill{background:var(--lime);color:#0c0d10;box-shadow:0 12px 30px rgba(198,240,74,.25)}
+.btn-fill:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(198,240,74,.35)}
+.btn-line{border:1px solid var(--line);color:var(--txt)}
+.btn-line:hover{border-color:var(--lime);background:rgba(198,240,74,.06)}
+.hero-stats{display:flex;gap:40px;margin-top:54px;flex-wrap:wrap}
+.hstat .n{font-family:var(--disp);font-size:46px;color:var(--lime);line-height:1}
+.hstat .l{font-size:13px;color:var(--muted);margin-top:6px}
+.mq{background:var(--lime);color:#0c0d10;overflow:hidden;padding:12px 0;transform:rotate(-1deg)}
+.mqt{display:flex;gap:30px;white-space:nowrap;width:max-content;animation:mq 22s linear infinite;font-family:var(--disp);font-size:20px;letter-spacing:2px}
+@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:100px 0}
+.shead{margin-bottom:56px}
+.shead .en{font-family:var(--disp);color:var(--lime);letter-spacing:3px;font-size:15px}
+.shead h2{font-family:var(--disp);font-size:clamp(30px,5vw,52px);letter-spacing:1px;margin-top:8px}
+.shead.ctr{text-align:center}
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.rc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:34px 28px;transition:.35s}
+.rc:hover{transform:translateY(-6px);border-color:var(--lime)}
+.rc .num{font-family:var(--disp);font-size:40px;color:var(--line);transition:.35s}
+.rc:hover .num{color:var(--lime)}
+.rc h3{font-size:20px;margin:10px 0 12px}
+.rc p{color:var(--muted);font-size:14.5px}
+.ba{background:var(--bg2)}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.bac{background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.bac .imgs{display:grid;grid-template-columns:1fr 1fr;height:200px}
+.bac .ph{display:flex;align-items:center;justify-content:center;font-size:46px;position:relative}
+.bac .ph span{position:absolute;top:10px;left:10px;font-family:var(--disp);font-size:12px;letter-spacing:1px;background:rgba(0,0,0,.5);padding:3px 10px;border-radius:4px}
+.before{background:linear-gradient(135deg,#3a3d44,#26282f)}
+.after{background:linear-gradient(135deg,#2f3a14,#1c2410)}
+.after span{color:var(--lime)}
+.bac .cap{padding:20px 22px}
+.bac .cap .who{font-weight:700;margin-bottom:6px}
+.bac .cap .who small{color:var(--muted);font-weight:400;margin-left:8px}
+.bac .cap .res{color:var(--lime);font-family:var(--disp);font-size:22px;margin-top:8px}
+.bac .cap p{color:var(--muted);font-size:13px;margin-top:8px}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:36px 28px;display:flex;flex-direction:column;position:relative}
+.pc.pop{border-color:var(--lime);box-shadow:0 20px 50px rgba(198,240,74,.12)}
+.pc .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--lime);color:#0c0d10;font-weight:700;font-size:12px;padding:5px 16px;border-radius:999px}
+.pc h3{font-family:var(--disp);font-size:24px;letter-spacing:1px}
+.pc .term{color:var(--muted);font-size:13px;margin:4px 0 18px}
+.pc .amt{font-family:var(--disp);font-size:40px}.pc .amt small{font-size:15px;color:var(--muted);font-family:var(--sans)}
+.pc ul{list-style:none;margin:22px 0;display:grid;gap:10px}
+.pc li{font-size:14px;color:#d4d8df;padding-left:24px;position:relative}
+.pc li::before{content:"✓";position:absolute;left:0;color:var(--lime);font-weight:700}
+.pc .btn{margin-top:auto;justify-content:center}
+.flow{max-width:760px;margin:0 auto;display:grid;gap:0}
+.fs{display:flex;gap:24px;padding:0 0 34px;position:relative}
+.fs:not(:last-child)::before{content:"";position:absolute;left:25px;top:54px;bottom:0;width:2px;background:var(--line)}
+.fs .n{width:52px;height:52px;flex-shrink:0;border-radius:50%;background:var(--lime);color:#0c0d10;font-family:var(--disp);font-size:22px;display:flex;align-items:center;justify-content:center}
+.fs h3{font-size:19px;margin-bottom:6px;padding-top:10px}
+.fs p{color:var(--muted);font-size:14.5px}
+.cta{background:linear-gradient(120deg,var(--lime),var(--lime-d));color:#0c0d10;text-align:center}
+.cta h2{font-family:var(--disp);font-size:clamp(32px,6vw,64px);letter-spacing:1px;line-height:1.05;margin-bottom:18px}
+.cta p{font-size:16px;margin-bottom:34px;font-weight:500}
+.cta .btn-fill{background:#0c0d10;color:var(--lime)}
+.cta .btn-fill:hover{background:#000}
+footer{background:var(--bg2);border-top:1px solid var(--line);padding:46px 0;text-align:center}
+footer .fnav{display:flex;gap:22px;justify-content:center;margin:20px 0;flex-wrap:wrap;font-size:13px}
+footer .fnav a{color:var(--muted)}
+footer .cp{color:#5e6470;font-size:12px;margin-top:12px}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+.reasons .rc:nth-child(2),.price-grid .pc:nth-child(2),.ba-grid .bac:nth-child(2){transition-delay:.1s}
+.reasons .rc:nth-child(3),.price-grid .pc:nth-child(3),.ba-grid .bac:nth-child(3){transition-delay:.2s}
+@media(max-width:860px){
+  .reasons,.ba-grid,.price-grid{grid-template-columns:1fr}
+  .gnav{display:none}.mtoggle{display:block}
+  .gnav.open{display:flex;position:absolute;top:72px;right:0;left:0;flex-direction:column;background:var(--bg2);padding:20px 24px;gap:14px;border-bottom:1px solid var(--line)}
+}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.mqt{animation:none}}
+</style>
+</head>
+<body>
+<div class="demo-ribbon">DEMO</div>
+
+<header id="hd">
+  <div class="wrap hd">
+    <a href="#top" class="logo">RE<i>B</i>UILD</a>
+    <nav class="gnav" id="gnav">
+      <a href="#reasons">選ばれる理由</a>
+      <a href="#results">実績</a>
+      <a href="#price">料金</a>
+      <a href="#flow">流れ</a>
+      <a href="#contact" class="gbtn">無料カウンセリング</a>
+    </nav>
+    <button class="mtoggle" id="mtoggle" aria-label="メニュー">☰</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <span class="tagpill rv">完全個室 × マンツーマン</span>
+      <h1 class="rv">なりたい体は、<br><span class="o">最短</span>でつくれる。</h1>
+      <p class="lead rv">専属トレーナーと管理栄養士が二人三脚で伴走。<b>無理な食事制限なし</b>、リバウンドさせない設計で、あなたの「なりたい」を結果に変えます。</p>
+      <div class="hero-actions rv">
+        <a href="#contact" class="btn btn-fill">無料カウンセリングを予約 →</a>
+        <a href="#results" class="btn btn-line">実績を見る</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat rv"><div class="n" data-c="98">98</div><div class="l">目標達成率 %</div></div>
+        <div class="hstat rv"><div class="n" data-c="2400">2400</div><div class="l">指導実績 名以上</div></div>
+        <div class="hstat rv"><div class="n" data-c="100">100</div><div class="l">完全個室 %</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mq"><div class="mqt"><span>2ヶ月で変わる ★ 食べて痩せる ★ 完全個室 ★ 返金保証 ★ 管理栄養士サポート ★ 2ヶ月で変わる ★ 食べて痩せる ★ 完全個室 ★ 返金保証 ★ 管理栄養士サポート ★</span></div></div>
+
+  <section id="reasons">
+    <div class="wrap">
+      <div class="shead rv"><span class="en">WHY REBUILD</span><h2>選ばれる、3つの理由</h2></div>
+      <div class="reasons">
+        <div class="rc rv"><div class="num">01</div><h3>完全オーダーメイド</h3><p>体組成・生活リズム・目標を分析し、あなた専用のプログラムを設計。続けられるから、結果が出る。</p></div>
+        <div class="rc rv"><div class="num">02</div><h3>食べて痩せる食事指導</h3><p>管理栄養士が毎日の食事をLINEでサポート。我慢ではなく「選び方」を学ぶから、リバウンドしない。</p></div>
+        <div class="rc rv"><div class="num">03</div><h3>結果に返金保証</h3><p>万が一ご満足いただけなければ全額返金。本気のあなたに、こちらも本気で応えます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ba" id="results">
+    <div class="wrap">
+      <div class="shead rv"><span class="en">RESULTS</span><h2>結果が、証明。</h2></div>
+      <div class="ba-grid">
+        <div class="bac rv">
+          <div class="imgs"><div class="ph before"><span>BEFORE</span>🧍</div><div class="ph after"><span>AFTER</span>🏃</div></div>
+          <div class="cap"><div class="who">T.Kさん<small>30代・男性</small></div><div class="res">-12.4kg</div><p>「健康診断で引っかかったのが入会のきっかけ。2ヶ月で見違えました。」</p></div>
+        </div>
+        <div class="bac rv">
+          <div class="imgs"><div class="ph before"><span>BEFORE</span>🧍</div><div class="ph after"><span>AFTER</span>💪</div></div>
+          <div class="cap"><div class="who">M.Sさん<small>40代・女性</small></div><div class="res">-8.6kg</div><p>「食事を我慢せず痩せられたのが驚き。体型維持の習慣が身につきました。」</p></div>
+        </div>
+        <div class="bac rv">
+          <div class="imgs"><div class="ph before"><span>BEFORE</span>🧍</div><div class="ph after"><span>AFTER</span>🤸</div></div>
+          <div class="cap"><div class="who">Y.Nさん<small>20代・女性</small></div><div class="res">-6.2kg</div><p>「結婚式までに、と駆け込みました。最高の状態で当日を迎えられました。」</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="price">
+    <div class="wrap">
+      <div class="shead ctr rv"><span class="en">PRICE</span><h2>料金プラン</h2></div>
+      <div class="price-grid">
+        <div class="pc rv"><h3>SHORT</h3><div class="term">2ヶ月 / 全16回</div><div class="amt">19.8<small>万円〜</small></div><ul><li>パーソナル指導 週2回</li><li>食事サポート</li><li>体組成測定</li><li>ウェア・タオル無料</li></ul><a href="#contact" class="btn btn-line">相談する</a></div>
+        <div class="pc pop rv"><div class="badge">人気No.1</div><h3>STANDARD</h3><div class="term">3ヶ月 / 全24回</div><div class="amt">27.8<small>万円〜</small></div><ul><li>パーソナル指導 週2回</li><li>毎日の食事サポート</li><li>体組成測定・分析</li><li>卒業後の維持プラン付</li><li>返金保証</li></ul><a href="#contact" class="btn btn-fill">このプランで相談</a></div>
+        <div class="pc rv"><h3>BODY MAKE</h3><div class="term">4ヶ月 / 全32回</div><div class="amt">36.8<small>万円〜</small></div><ul><li>パーソナル指導 週2回</li><li>食事サポート＋献立提案</li><li>姿勢・柔軟性改善</li><li>大会・撮影向け調整</li></ul><a href="#contact" class="btn btn-line">相談する</a></div>
+      </div>
+      <p class="rv" style="text-align:center;color:var(--muted);font-size:13px;margin-top:28px">※ 表示は税込・分割払い対応。詳細は無料カウンセリングでご案内します。</p>
+    </div>
+  </section>
+
+  <section class="ba" id="flow">
+    <div class="wrap">
+      <div class="shead rv"><span class="en">FLOW</span><h2>入会までの流れ</h2></div>
+      <div class="flow">
+        <div class="fs rv"><div class="n">1</div><div><h3>無料カウンセリング予約</h3><p>フォームから希望日時を送信。所要60分、勧誘は一切しません。</p></div></div>
+        <div class="fs rv"><div class="n">2</div><div><h3>体験トレーニング</h3><p>体組成を測定し、目標を共有。実際のトレーニングを体験できます。</p></div></div>
+        <div class="fs rv"><div class="n">3</div><div><h3>プラン提案・ご入会</h3><p>あなたに最適なプランをご提案。納得いただいてからのスタートです。</p></div></div>
+        <div class="fs rv"><div class="n">4</div><div><h3>トレーニング開始</h3><p>専属トレーナーと二人三脚で、目標達成まで伴走します。</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <h2 class="rv">本気で変えたいなら、<br>今日から。</h2>
+      <p class="rv">無料カウンセリングは毎月先着20名。まずは話を聞くだけでもOKです。</p>
+      <a href="#" class="btn btn-fill rv" onclick="return false">無料カウンセリングを予約する →</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="logo">RE<i>B</i>UILD</a>
+    <div class="fnav"><a href="#reasons">選ばれる理由</a><a href="#results">実績</a><a href="#price">料金</a><a href="#flow">流れ</a></div>
+    <p class="cp">© 2026 REBUILD personal gym（架空の店舗のデモサイトです）</p>
+  </div>
+</footer>
+
+<script>
+const hd=document.getElementById('hd');
+addEventListener('scroll',()=>hd.classList.toggle('scd',scrollY>20),{passive:true});
+const gnav=document.getElementById('gnav'),mt=document.getElementById('mtoggle');
+mt.addEventListener('click',()=>gnav.classList.toggle('open'));
+gnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>gnav.classList.remove('open')));
+const rvs=[...document.querySelectorAll('.rv')];
+function rev(){const t=innerHeight*0.9;for(const el of rvs){if(el.classList.contains('in'))continue;if(el.getBoundingClientRect().top<t)el.classList.add('in');}}
+addEventListener('scroll',rev,{passive:true});addEventListener('resize',rev);rev();
+setTimeout(()=>rvs.forEach(el=>el.classList.add('in')),1500);
+</script>
+</body>
+</html>
