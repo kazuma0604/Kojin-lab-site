@@ -7,114 +7,159 @@
 <meta name="description" content="栞珈琲は、自家焙煎のスペシャルティコーヒーと手作り焼き菓子の小さなカフェ。ゆっくり本が読める、街の止まり木です。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --cream:#faf5ec; --paper:#fffdf8; --espresso:#3a2b20; --espresso-2:#5c4636;
-  --terra:#c0683f; --terra-d:#a4542f; --sage:#7f8a6a; --line:#e6ddcd; --muted:#8a7c6c;
-  --serif:"Shippori Mincho",serif; --sans:"Noto Sans JP",sans-serif;
+  --cream:#f5eee2; --paper:#fbf7ef; --espresso:#2a1f17; --ink:#3a2c20; --soft:#6d5b4a;
+  --terra:#bd6845; --terra-d:#a4542f; --gold:#c2a05c; --sage:#717c5d; --line:#e3d8c6;
+  --serif:"Shippori Mincho",serif; --garamond:"Cormorant Garamond",serif; --sans:"Noto Sans JP",sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);color:var(--espresso);background:var(--cream);line-height:1.9;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.95;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
 .serif{font-family:var(--serif)}
-.demo-ribbon{position:fixed;top:14px;left:-42px;transform:rotate(-45deg);background:var(--terra);color:#fff;font-size:11px;letter-spacing:1px;padding:5px 50px;z-index:200;box-shadow:0 4px 12px rgba(0,0,0,.15)}
-/* header */
-header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.4s;border-bottom:1px solid transparent}
-header.scd{background:rgba(255,253,248,.9);backdrop-filter:blur(8px);border-bottom-color:var(--line)}
-.hd{display:flex;align-items:center;justify-content:space-between;height:74px}
-.logo{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:2px}
-.logo small{font-size:11px;letter-spacing:2px;color:var(--muted);display:block;font-family:var(--sans);font-weight:400}
-.gnav{display:flex;gap:30px;align-items:center}
-.gnav a{font-size:14px;color:var(--espresso-2);transition:.25s}
-.gnav a:hover{color:var(--terra)}
-.gbtn{background:var(--espresso);color:var(--cream)!important;padding:10px 22px;border-radius:2px;font-size:13px;letter-spacing:1px}
-.gbtn:hover{background:var(--terra)}
-.mtoggle{display:none;font-size:24px;background:none;border:0;cursor:pointer;color:var(--espresso)}
-/* hero */
-.hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:40px;padding:110px 0 60px;position:relative}
-.hero-l{max-width:520px}
-.eyebrow{font-family:var(--serif);color:var(--terra);letter-spacing:4px;font-size:14px;margin-bottom:22px}
-.hero h1{font-family:var(--serif);font-size:clamp(34px,5vw,56px);line-height:1.5;font-weight:700;margin-bottom:26px}
-.hero p{color:var(--espresso-2);margin-bottom:34px;font-size:16px}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
-.btn{display:inline-block;padding:15px 34px;border-radius:2px;font-size:15px;letter-spacing:1px;transition:.3s}
-.btn-fill{background:var(--terra);color:#fff;box-shadow:0 10px 24px rgba(192,104,63,.28)}
-.btn-fill:hover{background:var(--terra-d);transform:translateY(-2px)}
-.btn-line{border:1px solid var(--espresso);color:var(--espresso)}
-.btn-line:hover{background:var(--espresso);color:var(--cream)}
-.hero-r{position:relative;height:560px;border-radius:6px;overflow:hidden;box-shadow:0 30px 60px rgba(58,43,32,.25)}
-.photo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px}
-.photo-coffee{background:linear-gradient(160deg,#6f4a32,#3a2b20)}
-.hero-stamp{position:absolute;bottom:24px;right:24px;width:108px;height:108px;border-radius:50%;background:var(--cream);color:var(--espresso);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--serif);text-align:center;line-height:1.4;box-shadow:0 8px 20px rgba(0,0,0,.2);transform:rotate(-8deg)}
-.hero-stamp b{font-size:24px;color:var(--terra)}
-.hero-stamp span{font-size:10px;letter-spacing:1px}
-/* sections */
-section{padding:100px 0}
-.shead{text-align:center;margin-bottom:60px}
-.shead .en{font-family:var(--serif);letter-spacing:5px;color:var(--terra);font-size:13px}
-.shead h2{font-family:var(--serif);font-size:clamp(26px,4vw,38px);margin-top:10px}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.04;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.demo-ribbon{position:fixed;top:16px;left:-44px;transform:rotate(-45deg);background:var(--terra);color:#fff;font-size:11px;letter-spacing:2px;padding:6px 52px;z-index:400;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+header{position:fixed;top:0;left:0;right:0;z-index:200;transition:.5s var(--ease)}
+header.scd{background:rgba(251,247,239,.86);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:84px;transition:.5s}
+header.scd .hd{height:68px}
+.logo{font-family:var(--serif);font-size:24px;font-weight:700;letter-spacing:3px;line-height:1.1}
+.logo small{display:block;font-family:var(--garamond);font-size:11px;letter-spacing:3px;color:var(--soft);font-weight:500}
+.gnav{display:flex;gap:34px;align-items:center}
+.gnav a{font-size:13.5px;letter-spacing:.5px;color:var(--ink);position:relative;padding:4px 0}
+.gnav a:not(.gbtn)::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--terra);transition:width .4s var(--ease)}
+.gnav a:not(.gbtn):hover::after{width:100%}
+.gbtn{border:1px solid var(--espresso);padding:11px 26px;border-radius:999px;font-size:13px;letter-spacing:1px;transition:.35s var(--ease)}
+.gbtn:hover{background:var(--espresso);color:var(--cream);transform:translateY(-2px)}
+.mtoggle{display:none;flex-direction:column;gap:6px;background:none;border:0;cursor:pointer;padding:6px;z-index:210}
+.mtoggle span{width:26px;height:2px;background:var(--espresso);transition:.35s}
+.mtoggle.on span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.mtoggle.on span:nth-child(2){opacity:0}
+.mtoggle.on span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:50px;padding:130px 0 70px}
+.hero-l{max-width:540px;position:relative;z-index:3}
+.eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--garamond);color:var(--terra);letter-spacing:3px;font-size:16px;font-style:italic;margin-bottom:30px}
+.eyebrow::before{content:"";width:40px;height:1px;background:var(--terra)}
+.hero h1{font-family:var(--serif);font-size:clamp(38px,5.4vw,62px);line-height:1.45;font-weight:700;margin-bottom:30px;letter-spacing:1px}
+.hero h1 .em{color:var(--terra)}
+.hero p.lead{color:var(--soft);margin-bottom:40px;font-size:16px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:999px;font-size:14.5px;letter-spacing:1px;transition:.4s var(--ease);position:relative;overflow:hidden}
+.btn-fill{background:var(--terra);color:#fff;box-shadow:0 14px 30px rgba(189,104,69,.28)}
+.btn-fill:hover{background:var(--terra-d);transform:translateY(-3px);box-shadow:0 20px 40px rgba(189,104,69,.36)}
+.btn-line{color:var(--ink);border-bottom:1px solid var(--ink);border-radius:0;padding:6px 2px}
+.btn-line .ar{transition:transform .35s var(--ease)}
+.btn-line:hover .ar{transform:translateX(6px)}
+.hero-r{position:relative;height:min(74vh,640px)}
+.hero-photo{position:absolute;inset:0;border-radius:200px 200px 8px 8px;overflow:hidden;box-shadow:0 40px 80px rgba(42,31,23,.3);will-change:transform}
+.hero-photo .bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 35%,#6f4a32,#2a1f17 75%);display:flex;align-items:center;justify-content:center}
+.cupwrap{position:relative;font-size:130px;filter:drop-shadow(0 20px 30px rgba(0,0,0,.4))}
+.steam{position:absolute;top:-6px;left:50%;width:8px;height:46px;border-radius:8px;background:linear-gradient(transparent,rgba(255,255,255,.5));filter:blur(3px);opacity:0;animation:steam 4s ease-in-out infinite}
+.steam.s2{left:42%;animation-delay:1.3s;height:40px}
+.steam.s3{left:58%;animation-delay:2.4s;height:50px}
+@keyframes steam{0%{opacity:0;transform:translate(-50%,0) scale(.8)}30%{opacity:.7}100%{opacity:0;transform:translate(-50%,-46px) scale(1.4)}}
+.hero-stamp{position:absolute;bottom:22px;right:-14px;width:116px;height:116px;border-radius:50%;background:var(--paper);color:var(--espresso);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--garamond);text-align:center;line-height:1.3;box-shadow:0 14px 30px rgba(0,0,0,.22);transform:rotate(-8deg);z-index:4;animation:spinwobble 14s ease-in-out infinite}
+@keyframes spinwobble{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(-2deg)}}
+.hero-stamp b{font-family:var(--serif);font-size:26px;color:var(--terra)}
+.hero-stamp span{font-size:10px;letter-spacing:2px}
+.scroll-c{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:var(--garamond);font-size:12px;letter-spacing:3px;color:var(--soft);writing-mode:vertical-rl;z-index:3}
+.scroll-c::after{content:"";display:block;width:1px;height:40px;background:var(--soft);margin:10px auto 0;animation:slide 2s ease-in-out infinite}
+@keyframes slide{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.1%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.mq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:20px 0;background:var(--paper)}
+.mqt{display:flex;gap:40px;white-space:nowrap;width:max-content;animation:mq 30s linear infinite}
+.mqt span{font-family:var(--garamond);font-style:italic;font-size:24px;color:var(--soft)}
+.mqt .dot{color:var(--terra);font-style:normal}
+@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:120px 0;position:relative}
+.shead{text-align:center;margin-bottom:70px}
+.shead .en{font-family:var(--garamond);font-style:italic;letter-spacing:4px;color:var(--terra);font-size:17px}
+.shead h2{font-family:var(--serif);font-size:clamp(28px,4vw,42px);margin-top:12px;letter-spacing:1px}
 .concept{background:var(--paper)}
-.concept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-.cc{text-align:center;padding:14px}
-.cc .ico{font-size:44px;margin-bottom:18px}
-.cc h3{font-family:var(--serif);font-size:20px;margin-bottom:12px}
-.cc p{color:var(--muted);font-size:14.5px}
-/* menu */
-.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 48px;max-width:880px;margin:0 auto}
-.mi{display:flex;gap:18px;align-items:flex-start;padding-bottom:22px;border-bottom:1px dashed var(--line)}
-.mi .mph{width:78px;height:78px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:34px;background:var(--cream)}
+.concept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.cc{text-align:center;padding:20px}
+.cc .ico{font-size:50px;margin-bottom:22px;display:inline-block;transition:transform .5s var(--ease)}
+.cc:hover .ico{transform:translateY(-8px) rotate(-6deg)}
+.cc .no{font-family:var(--garamond);font-style:italic;color:var(--gold);font-size:18px;margin-bottom:6px}
+.cc h3{font-family:var(--serif);font-size:21px;margin-bottom:14px}
+.cc p{color:var(--soft);font-size:14.5px}
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 56px;max-width:900px;margin:0 auto}
+.mi{display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--line);transition:.4s var(--ease)}
+.mi:hover{padding-left:8px}
+.mi .mph{width:84px;height:84px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:38px;background:var(--cream);transition:.4s var(--ease)}
+.mi:hover .mph{transform:scale(1.06);box-shadow:0 10px 24px rgba(42,31,23,.12)}
 .mi .mb{flex:1}
-.mi .mt{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.mi h4{font-family:var(--serif);font-size:18px}
-.mi .price{font-family:var(--serif);color:var(--terra);font-weight:700;white-space:nowrap}
-.mi p{font-size:13px;color:var(--muted);margin-top:4px}
-/* gallery */
+.mi .mt{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.mi h4{font-family:var(--serif);font-size:19px}
+.mi .dots{flex:1;border-bottom:1px dotted var(--line);margin:0 4px 4px}
+.mi .price{font-family:var(--garamond);color:var(--terra);font-weight:600;font-size:20px;white-space:nowrap}
+.mi p{font-size:13px;color:var(--soft);margin-top:5px}
 .gallery{background:var(--espresso);color:var(--cream)}
-.gallery .shead h2,.gallery .shead .en{color:var(--cream)}
-.gallery .shead .en{color:#d9a47e}
-.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.gal{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:48px;transition:.4s}
-.gal:hover{transform:scale(1.04)}
-.g1{background:linear-gradient(135deg,#7a5238,#4a3526)}.g2{background:linear-gradient(135deg,#8a6a4a,#5c4636)}
-.g3{background:linear-gradient(135deg,#6f7a5a,#4a5238)}.g4{background:linear-gradient(135deg,#a4542f,#6f3a20)}
-.g5{background:linear-gradient(135deg,#5c4636,#3a2b20)}.g6{background:linear-gradient(135deg,#7f8a6a,#56603f)}
-.g7{background:linear-gradient(135deg,#c0683f,#8a4527)}.g8{background:linear-gradient(135deg,#6f4a32,#3a2b20)}
-/* info */
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-.info dl{display:grid;grid-template-columns:90px 1fr;gap:14px 18px}
-.info dt{font-family:var(--serif);color:var(--terra)}
-.info dd{border-bottom:1px solid var(--line);padding-bottom:14px}
-.info-map{height:300px;border-radius:6px;background:linear-gradient(135deg,#e6ddcd,#cfc3ad);display:flex;align-items:center;justify-content:center;font-size:54px;color:var(--espresso-2)}
-/* cta */
-.cta{background:var(--terra);color:#fff;text-align:center}
-.cta h2{font-family:var(--serif);font-size:clamp(26px,4vw,40px);margin-bottom:18px}
-.cta p{margin-bottom:32px;opacity:.95}
-.cta .btn-fill{background:var(--cream);color:var(--espresso)}
+.gallery .shead h2{color:var(--cream)}
+.gallery .shead .en{color:var(--gold)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px}
+.gal{border-radius:6px;display:flex;align-items:flex-end;justify-content:flex-start;font-size:46px;position:relative;overflow:hidden;cursor:pointer}
+.gal::after{content:attr(data-cap);position:absolute;left:16px;bottom:14px;font-family:var(--garamond);font-style:italic;font-size:15px;color:rgba(255,255,255,.9);opacity:0;transform:translateY(8px);transition:.4s var(--ease)}
+.gal:hover::after{opacity:1;transform:none}
+.gal .em{transition:transform .6s var(--ease);padding:16px}
+.gal:hover .em{transform:scale(1.18)}
+.gal.big{grid-column:span 2;grid-row:span 2}
+.g1{background:linear-gradient(135deg,#7a5238,#3a2519)}.g2{background:linear-gradient(135deg,#8a6a4a,#4c3826)}
+.g3{background:linear-gradient(135deg,#6f7a5a,#3c4528)}.g4{background:linear-gradient(135deg,#bd6845,#7a3a20)}
+.g5{background:linear-gradient(135deg,#5c4636,#2a1f17)}.g6{background:linear-gradient(135deg,#a88a5a,#6a5230)}
+.story{background:var(--cream);overflow:hidden}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.story-img{height:440px;border-radius:8px;background:radial-gradient(circle at 40% 40%,#6f7a5a,#3c4528);display:flex;align-items:center;justify-content:center;font-size:90px;box-shadow:0 30px 60px rgba(42,31,23,.2);will-change:transform}
+.story-txt .en{font-family:var(--garamond);font-style:italic;color:var(--terra);letter-spacing:3px;font-size:16px}
+.story-txt h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,36px);margin:12px 0 22px;line-height:1.6}
+.story-txt p{color:var(--soft);margin-bottom:16px;font-size:15px}
+.sign{font-family:var(--garamond);font-style:italic;font-size:22px;color:var(--ink);margin-top:10px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.info dl{display:grid;grid-template-columns:96px 1fr;gap:0 20px}
+.info dt{font-family:var(--serif);color:var(--terra);padding:16px 0;border-bottom:1px solid var(--line)}
+.info dd{padding:16px 0;border-bottom:1px solid var(--line)}
+.info-map{height:330px;border-radius:8px;background:linear-gradient(135deg,#e3d8c6,#cdbfa6);display:flex;align-items:center;justify-content:center;font-size:60px;color:var(--soft);position:relative;overflow:hidden}
+.info-map::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(0,0,0,.04) 28px,rgba(0,0,0,.04) 29px),repeating-linear-gradient(90deg,transparent,transparent 28px,rgba(0,0,0,.04) 28px,rgba(0,0,0,.04) 29px)}
+.cta{background:var(--terra);color:#fff;text-align:center;overflow:hidden;position:relative}
+.cta::before{content:"☕";position:absolute;font-size:300px;opacity:.06;top:-60px;right:-30px;transform:rotate(-10deg)}
+.cta h2{font-family:var(--serif);font-size:clamp(28px,4.5vw,46px);margin-bottom:20px;position:relative}
+.cta p{margin-bottom:36px;opacity:.95;position:relative}
+.cta .btn-fill{background:var(--paper);color:var(--espresso);position:relative}
 .cta .btn-fill:hover{background:#fff}
-/* footer */
-footer{background:var(--espresso);color:var(--cream);text-align:center;padding:50px 0}
+footer{background:var(--espresso);color:var(--cream);text-align:center;padding:64px 0 44px}
 footer .logo{color:var(--cream)}
-footer .fnav{display:flex;gap:24px;justify-content:center;margin:24px 0;flex-wrap:wrap;font-size:13px}
-footer .fnav a{color:#cbb9a6}
-footer .cp{font-size:12px;color:#8a7c6c;margin-top:14px}
-/* reveal */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+footer .fnav{display:flex;gap:28px;justify-content:center;margin:26px 0;flex-wrap:wrap;font-size:13px}
+footer .fnav a{color:#c9b7a2;transition:.3s}
+footer .fnav a:hover{color:var(--gold)}
+footer .cp{font-size:12px;color:#8a7c6c;margin-top:18px}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .rv.in{opacity:1;transform:none}
-@media(max-width:860px){
-  .hero{grid-template-columns:1fr;gap:30px}
-  .hero-r{height:340px;order:-1}
-  .concept-grid,.menu-grid,.gal-grid,.info-grid{grid-template-columns:1fr}
-  .gal-grid{grid-template-columns:repeat(2,1fr)}
-  .gnav{display:none}.mtoggle{display:block}
-  .gnav.open{display:flex;position:absolute;top:74px;right:0;left:0;flex-direction:column;background:var(--paper);padding:20px 24px;gap:16px;border-bottom:1px solid var(--line)}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr;gap:36px}
+  .hero-r{height:54vh;order:-1}.hero-photo{border-radius:140px 140px 8px 8px}
+  .scroll-c{display:none}
+  .concept-grid,.story-grid,.info-grid{grid-template-columns:1fr;gap:36px}
+  .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}.gal.big{grid-column:span 2;grid-row:span 1}
 }
-@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+@media(max-width:680px){
+  .menu-grid{grid-template-columns:1fr;gap:0}
+  .gnav{position:fixed;inset:0 0 0 auto;width:min(82vw,330px);height:100vh;flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;padding:0 40px;background:var(--paper);box-shadow:-20px 0 60px rgba(0,0,0,.18);transform:translateX(100%);transition:transform .5s var(--ease)}
+  .gnav.open{transform:none}.gnav a{font-size:18px}
+  .mtoggle{display:flex}
+  section{padding:84px 0}.hero{padding:118px 0 50px}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:130px}
+}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}*{animation:none!important}}
 </style>
 </head>
 <body>
+<div class="grain"></div>
 <div class="demo-ribbon">DEMO</div>
 
 <header id="hd">
@@ -124,68 +169,98 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:14px}
       <a href="#concept">コンセプト</a>
       <a href="#menu">メニュー</a>
       <a href="#gallery">店内</a>
+      <a href="#story">物語</a>
       <a href="#info">店舗情報</a>
       <a href="#contact" class="gbtn">ご予約</a>
     </nav>
-    <button class="mtoggle" id="mtoggle" aria-label="メニュー">☰</button>
+    <button class="mtoggle" id="mtoggle" aria-label="メニュー"><span></span><span></span><span></span></button>
   </div>
 </header>
 
 <main id="top">
   <section class="hero wrap">
     <div class="hero-l">
-      <p class="eyebrow rv">本と珈琲のある暮らし</p>
-      <h1 class="rv">ゆっくり、<br>一杯のための時間を。</h1>
-      <p class="rv">自家焙煎のスペシャルティコーヒーと、手作りの焼き菓子。<br>本を片手に、何もしない時間を過ごせる。そんな街の止まり木です。</p>
-      <div class="hero-actions rv">
+      <p class="eyebrow rv">Book &amp; Coffee</p>
+      <h1 class="rv d1">ゆっくり、<br>一杯のための<br><span class="em">時間</span>を。</h1>
+      <p class="lead rv d2">自家焙煎のスペシャルティコーヒーと、手作りの焼き菓子。<br>本を片手に、何もしない時間を過ごせる。そんな街の止まり木です。</p>
+      <div class="hero-actions rv d3">
         <a href="#menu" class="btn btn-fill">メニューを見る</a>
-        <a href="#info" class="btn btn-line">アクセス</a>
+        <a href="#info" class="btn btn-line">アクセス <span class="ar">→</span></a>
       </div>
     </div>
-    <div class="hero-r rv">
-      <div class="photo photo-coffee">☕</div>
-      <div class="hero-stamp"><span>自家焙煎</span><b>2015</b><span>OPEN</span></div>
+    <div class="hero-r">
+      <div class="hero-photo" id="heroPhoto">
+        <div class="bg">
+          <div class="cupwrap">☕<span class="steam"></span><span class="steam s2"></span><span class="steam s3"></span></div>
+        </div>
+      </div>
+      <div class="hero-stamp"><span>自家焙煎</span><b>2015</b><span>SINCE</span></div>
     </div>
+    <div class="scroll-c">SCROLL</div>
   </section>
+
+  <div class="mq"><div class="mqt">
+    <span>自家焙煎</span><span class="dot">✦</span><span>手作り焼き菓子</span><span class="dot">✦</span><span>本のある空間</span><span class="dot">✦</span><span>スペシャルティ</span><span class="dot">✦</span>
+    <span>自家焙煎</span><span class="dot">✦</span><span>手作り焼き菓子</span><span class="dot">✦</span><span>本のある空間</span><span class="dot">✦</span><span>スペシャルティ</span><span class="dot">✦</span>
+  </div></div>
 
   <section class="concept" id="concept">
     <div class="wrap">
-      <div class="shead"><span class="en rv">CONCEPT</span><h2 class="rv">栞珈琲の、こだわり</h2></div>
+      <div class="shead"><span class="en rv">Our Concept</span><h2 class="rv d1">栞珈琲の、こだわり</h2></div>
       <div class="concept-grid">
-        <div class="cc rv"><div class="ico">🫘</div><h3>自家焙煎</h3><p>週に一度、店内の焙煎機で少量ずつ。豆の個性を引き出した、香り高い一杯を。</p></div>
-        <div class="cc rv"><div class="ico">🍰</div><h3>手作り焼き菓子</h3><p>季節の素材を使ったスコーンやパウンドケーキ。コーヒーに寄り添う甘さです。</p></div>
-        <div class="cc rv"><div class="ico">📖</div><h3>本のある空間</h3><p>店主が選んだ約500冊の本棚。気に入った一冊は、そのまま読書席へどうぞ。</p></div>
+        <div class="cc rv"><div class="ico">🫘</div><div class="no">01</div><h3>自家焙煎</h3><p>週に一度、店内の焙煎機で少量ずつ。豆の個性を引き出した、香り高い一杯を。</p></div>
+        <div class="cc rv d1"><div class="ico">🍰</div><div class="no">02</div><h3>手作り焼き菓子</h3><p>季節の素材を使ったスコーンやパウンドケーキ。コーヒーに寄り添う甘さです。</p></div>
+        <div class="cc rv d2"><div class="ico">📖</div><div class="no">03</div><h3>本のある空間</h3><p>店主が選んだ約500冊の本棚。気に入った一冊は、そのまま読書席へどうぞ。</p></div>
       </div>
     </div>
   </section>
 
   <section id="menu">
     <div class="wrap">
-      <div class="shead"><span class="en rv">MENU</span><h2 class="rv">おしながき</h2></div>
+      <div class="shead"><span class="en rv">Menu</span><h2 class="rv d1">おしながき</h2></div>
       <div class="menu-grid">
-        <div class="mi rv"><div class="mph">☕</div><div class="mb"><div class="mt"><h4>本日の珈琲</h4><span class="price">¥520</span></div><p>日替わりのスペシャルティ。スタッフにお好みをどうぞ。</p></div></div>
-        <div class="mi rv"><div class="mph">🥛</div><div class="mb"><div class="mt"><h4>カフェラテ</h4><span class="price">¥580</span></div><p>深煎り豆と、なめらかなスチームミルクで。</p></div></div>
-        <div class="mi rv"><div class="mph">🧊</div><div class="mb"><div class="mt"><h4>水出しアイス珈琲</h4><span class="price">¥600</span></div><p>8時間かけて抽出。すっきりまろやかな口当たり。</p></div></div>
-        <div class="mi rv"><div class="mph">🍮</div><div class="mb"><div class="mt"><h4>自家製プリン</h4><span class="price">¥480</span></div><p>固めの昔ながら。ほろ苦カラメルと一緒に。</p></div></div>
-        <div class="mi rv"><div class="mph">🥐</div><div class="mb"><div class="mt"><h4>季節のスコーン</h4><span class="price">¥420</span></div><p>外はさっくり、中はしっとり。クロテッドクリーム添え。</p></div></div>
-        <div class="mi rv"><div class="mph">🍞</div><div class="mb"><div class="mt"><h4>厚切りトースト</h4><span class="price">¥550</span></div><p>近所のパン屋さんの食パンを、こんがりと。</p></div></div>
+        <div class="mi rv"><div class="mph">☕</div><div class="mb"><div class="mt"><h4>本日の珈琲</h4><span class="dots"></span><span class="price">¥520</span></div><p>日替わりのスペシャルティ。スタッフにお好みをどうぞ。</p></div></div>
+        <div class="mi rv"><div class="mph">🥛</div><div class="mb"><div class="mt"><h4>カフェラテ</h4><span class="dots"></span><span class="price">¥580</span></div><p>深煎り豆と、なめらかなスチームミルクで。</p></div></div>
+        <div class="mi rv"><div class="mph">🧊</div><div class="mb"><div class="mt"><h4>水出しアイス珈琲</h4><span class="dots"></span><span class="price">¥600</span></div><p>8時間かけて抽出。すっきりまろやかな口当たり。</p></div></div>
+        <div class="mi rv"><div class="mph">🍮</div><div class="mb"><div class="mt"><h4>自家製プリン</h4><span class="dots"></span><span class="price">¥480</span></div><p>固めの昔ながら。ほろ苦カラメルと一緒に。</p></div></div>
+        <div class="mi rv"><div class="mph">🥐</div><div class="mb"><div class="mt"><h4>季節のスコーン</h4><span class="dots"></span><span class="price">¥420</span></div><p>外はさっくり、中はしっとり。クロテッドクリーム添え。</p></div></div>
+        <div class="mi rv"><div class="mph">🍞</div><div class="mb"><div class="mt"><h4>厚切りトースト</h4><span class="dots"></span><span class="price">¥550</span></div><p>近所のパン屋さんの食パンを、こんがりと。</p></div></div>
       </div>
     </div>
   </section>
 
   <section class="gallery" id="gallery">
     <div class="wrap">
-      <div class="shead"><span class="en rv">GALLERY</span><h2 class="rv">店内の風景</h2></div>
+      <div class="shead"><span class="en rv">Gallery</span><h2 class="rv d1">店内の風景</h2></div>
       <div class="gal-grid">
-        <div class="gal g1 rv">📚</div><div class="gal g2 rv">🪑</div><div class="gal g3 rv">🌿</div><div class="gal g4 rv">☕</div>
-        <div class="gal g5 rv">🕯️</div><div class="gal g6 rv">🪟</div><div class="gal g7 rv">🍰</div><div class="gal g8 rv">📖</div>
+        <div class="gal g1 big rv" data-cap="読書席のある窓辺"><span class="em">📚</span></div>
+        <div class="gal g2 rv d1" data-cap="自慢の焙煎機"><span class="em">⚙️</span></div>
+        <div class="gal g3 rv d2" data-cap="緑のある入口"><span class="em">🌿</span></div>
+        <div class="gal g4 rv" data-cap="淹れたての一杯"><span class="em">☕</span></div>
+        <div class="gal g5 rv d1" data-cap="夜の灯り"><span class="em">🕯️</span></div>
+        <div class="gal g6 rv d2" data-cap="季節の焼き菓子"><span class="em">🍰</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="story-grid">
+        <div class="story-img rv" id="storyImg">🌿</div>
+        <div class="story-txt">
+          <span class="en rv">Our Story</span>
+          <h2 class="rv d1">「ただいま」と言える、<br>もう一つの居場所を。</h2>
+          <p class="rv d1">会社でも家でもない、ほっとできる第三の場所。栞珈琲は、そんな想いから2015年に小さく始めました。</p>
+          <p class="rv d2">珈琲を淹れる時間も、本のページをめくる音も、ぜんぶ「余白」。慌ただしい毎日の中で、ここに来れば少しだけ呼吸が深くなる。そんなお店でありたいと思っています。</p>
+          <p class="sign rv d2">— 店主 しおり</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="info">
     <div class="wrap">
-      <div class="shead"><span class="en rv">INFORMATION</span><h2 class="rv">店舗情報</h2></div>
+      <div class="shead"><span class="en rv">Information</span><h2 class="rv d1">店舗情報</h2></div>
       <div class="info-grid info">
         <dl class="rv">
           <dt>店名</dt><dd>栞珈琲 -shiori coffee-</dd>
@@ -195,7 +270,7 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:14px}
           <dt>席数</dt><dd>18席（テラス6席）</dd>
           <dt>電話</dt><dd>000-000-0000</dd>
         </dl>
-        <div class="info-map rv">🗺️</div>
+        <div class="info-map rv d1">🗺️</div>
       </div>
     </div>
   </section>
@@ -203,8 +278,8 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:14px}
   <section class="cta" id="contact">
     <div class="wrap">
       <h2 class="rv">席のご予約・お問い合わせ</h2>
-      <p class="rv">読書会・撮影でのご利用もご相談ください。お電話またはInstagramのDMで承ります。</p>
-      <a href="#" class="btn btn-fill rv" onclick="return false">Instagramでご予約</a>
+      <p class="rv d1">読書会・撮影でのご利用もご相談ください。お電話またはInstagramのDMで承ります。</p>
+      <a href="#" class="btn btn-fill rv d2" onclick="return false">Instagramでご予約</a>
     </div>
   </section>
 </main>
@@ -212,21 +287,23 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:14px}
 <footer>
   <div class="wrap">
     <a href="#top" class="logo">栞珈琲<small>SHIORI COFFEE</small></a>
-    <div class="fnav"><a href="#concept">コンセプト</a><a href="#menu">メニュー</a><a href="#gallery">店内</a><a href="#info">店舗情報</a></div>
+    <div class="fnav"><a href="#concept">コンセプト</a><a href="#menu">メニュー</a><a href="#gallery">店内</a><a href="#story">物語</a><a href="#info">店舗情報</a></div>
     <p class="cp">© 2026 栞珈琲 -shiori coffee-（架空の店舗のデモサイトです）</p>
   </div>
 </footer>
 
 <script>
 const hd=document.getElementById('hd');
-addEventListener('scroll',()=>hd.classList.toggle('scd',scrollY>20),{passive:true});
+addEventListener('scroll',()=>hd.classList.toggle('scd',scrollY>30),{passive:true});
 const gnav=document.getElementById('gnav'),mt=document.getElementById('mtoggle');
-mt.addEventListener('click',()=>gnav.classList.toggle('open'));
-gnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>gnav.classList.remove('open')));
+mt.addEventListener('click',()=>{gnav.classList.toggle('open');mt.classList.toggle('on');});
+gnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{gnav.classList.remove('open');mt.classList.remove('on');}));
 const rvs=[...document.querySelectorAll('.rv')];
 function rev(){const t=innerHeight*0.9;for(const el of rvs){if(el.classList.contains('in'))continue;if(el.getBoundingClientRect().top<t)el.classList.add('in');}}
 addEventListener('scroll',rev,{passive:true});addEventListener('resize',rev);rev();
-setTimeout(()=>rvs.forEach(el=>el.classList.add('in')),1500);
+setTimeout(()=>rvs.forEach(el=>el.classList.add('in')),1600);
+const hp=document.getElementById('heroPhoto'),si=document.getElementById('storyImg');
+addEventListener('scroll',()=>{const y=scrollY;if(hp)hp.style.transform='translateY('+(y*0.06)+'px)';if(si){const r=si.getBoundingClientRect();si.style.transform='translateY('+((r.top-innerHeight/2)*-0.04)+'px)';}},{passive:true});
 </script>
 </body>
 </html>
