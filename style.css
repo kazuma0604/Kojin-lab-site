@@ -233,7 +233,13 @@ a{color:inherit;text-decoration:none}
   }
   .nav.open{transform:translateX(0)}
   .nav a{font-size:18px;padding:10px 0;width:100%}
-  .nav-cta{margin-top:10px}
+  .nav-cta{
+    margin-top:18px;width:auto;align-self:stretch;text-align:center;
+    background:var(--accent-grad);color:#06121f!important;border:0;
+    padding:15px 28px;font-size:16px;
+    box-shadow:0 10px 26px rgba(56,189,248,.28);
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(99,102,241,.36)}
   .nav-toggle{display:flex}
   .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
   .nav-toggle.open span:nth-child(2){opacity:0}
