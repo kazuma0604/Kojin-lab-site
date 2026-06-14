@@ -147,7 +147,7 @@ a{color:inherit;text-decoration:none}
 .card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(56,189,248,.10),transparent 40%);opacity:0;transition:opacity .4s}
 .card:hover{transform:translateY(-8px);border-color:var(--border-2);box-shadow:0 24px 60px rgba(0,0,0,.5)}
 .card:hover::before{opacity:1}
-.card-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:22px;background:var(--surface-2);border:1px solid var(--border-2);color:var(--cyan);margin-bottom:22px}
+.card-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:22px;background:var(--accent-grad);border:0;color:#06121f;margin-bottom:22px}
 .card-accent .card-icon{background:var(--accent-grad);color:#06121f;border:0;font-size:24px}
 .card-icon-app{font-size:17px!important;letter-spacing:1px}
 .card h3{font-size:19px;margin-bottom:12px}
