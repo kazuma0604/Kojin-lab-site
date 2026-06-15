@@ -126,6 +126,40 @@
   }
 
   /* Date bar */
+  /* Demo data prompt / banner */
+  .demo-prompt {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+    background: linear-gradient(135deg, var(--accent-soft), var(--card));
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 14px 16px; box-shadow: var(--shadow-md);
+  }
+  .demo-prompt-text { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+  .demo-prompt-text b { font-size: 14px; color: var(--text); }
+  .demo-prompt-text span { font-size: 12px; color: var(--text-dim); line-height: 1.45; }
+  .demo-prompt button {
+    flex-shrink: 0; border: none; cursor: pointer;
+    background: var(--accent); color: #fff;
+    padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 700;
+    box-shadow: var(--shadow-sm);
+  }
+  .demo-prompt button:active { transform: scale(0.97); }
+  .demo-banner {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+    background: var(--accent-soft); border: 1px dashed var(--accent);
+    border-radius: var(--radius-sm); padding: 9px 14px;
+  }
+  .demo-banner-text { flex: 1; font-size: 12px; font-weight: 600; color: var(--accent); }
+  .demo-banner button {
+    flex-shrink: 0; border: 1px solid var(--accent); cursor: pointer;
+    background: transparent; color: var(--accent);
+    padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700;
+  }
+  .demo-banner button:active { transform: scale(0.97); }
+  @media (max-width: 380px) {
+    .demo-prompt { flex-direction: column; align-items: stretch; }
+    .demo-prompt button { width: 100%; }
+  }
+
   .date-bar {
     display: flex; align-items: center; gap: 6px; margin-bottom: 12px;
     background: var(--card); border-radius: var(--radius);
@@ -975,6 +1009,19 @@
 </header>
 
 <main>
+  <!-- Demo data: prompt (shown only when empty) / banner (shown while active) -->
+  <div class="demo-prompt" id="demoPrompt" style="display:none">
+    <div class="demo-prompt-text">
+      <b>このアプリを試してみませんか？</b>
+      <span>架空のサンプル（生後3〜4ヶ月）を入れて全機能をプレビューできます。</span>
+    </div>
+    <button id="demoLoadBtn">デモデータを試す</button>
+  </div>
+  <div class="demo-banner" id="demoBanner" style="display:none">
+    <span class="demo-banner-text">デモデータ表示中（架空のサンプルです）</span>
+    <button id="demoResetBtn">リセット</button>
+  </div>
+
   <!-- TAB: TODAY -->
   <section class="tab-content active" data-tab="today">
     <div class="date-bar">
@@ -2720,7 +2767,212 @@ function exportCSV() {
   URL.revokeObjectURL(a.href);
 }
 
+// --- Demo data (portfolio preview) ---
+// 公開デモ用。記録が空のとき「デモデータを試す」を表示し、
+// 押すと架空のサンプル（生後3〜4ヶ月）を投入する。
+// 投入前の全キーを DEMO_BACKUP_KEY に退避し、リセットで完全復元する。
+const DEMO_KEYS = [STORAGE_KEY, GROWTH_KEY, SETTINGS_KEY, VAX_KEY, FAV_KEY, MILESTONE_KEY, PHOTO_KEY, MEDICAL_KEY];
+const DEMO_BACKUP_KEY = 'baby-tracker-demo-backup-v1';
+const DEMO_FLAG_KEY = 'baby-tracker-demo-active-v1';
+
+function isDemoActive() { return localStorage.getItem(DEMO_FLAG_KEY) === '1'; }
+
+// 実データが空か（誕生日・記録・成長・通院・マイルストーンがすべて無い）
+function isAllEmpty() {
+  const hasEntries = Object.values(state.data).some(d => d.entries && d.entries.length);
+  return !state.settings.birthDate && !hasEntries &&
+         state.growth.length === 0 && state.medical.length === 0 &&
+         Object.keys(state.milestones).length === 0;
+}
+
+function buildDemoData() {
+  const today = new Date();
+  // 誕生日 = 今日から約100日前（生後3ヶ月強）
+  const birth = new Date(today); birth.setDate(birth.getDate() - 100);
+  const birthStr = todayStr(birth);
+
+  // 直近18日分の授乳・睡眠・おむつ・体温
+  const data = {};
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  const did = () => uid();
+
+  for (let back = 17; back >= 0; back--) {
+    const d = new Date(today); d.setDate(d.getDate() - back);
+    const dateStr = todayStr(d);
+    const isToday = back === 0;
+    const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
+    const entries = [];
+
+    // 授乳: 1日6〜8回（おおむね3時間おき + 量のばらつき）
+    const feeds = rnd(6, 8);
+    const first = rnd(20, 70); // 0:20〜1:10頃の最初の授乳
+    const gap = Math.floor((24 * 60 - first - 60) / feeds);
+    for (let i = 0; i < feeds; i++) {
+      const t = first + i * gap + rnd(-20, 20);
+      if (t < 0 || t >= 24 * 60) continue;
+      if (isToday && t > nowMin) continue;
+      entries.push({ id: did(), type: 'milk', startMin: t, amount: rnd(20, 32) * 5 }); // 100〜160ml
+    }
+
+    // おむつ: 1日5〜7回（おしっこ中心、うんち1〜2回）
+    const diapers = rnd(5, 7);
+    for (let i = 0; i < diapers; i++) {
+      const t = rnd(0, 23) * 60 + rnd(0, 59);
+      if (isToday && t > nowMin) continue;
+      const states = ['おしっこ', 'おしっこ', 'おしっこ', '両方'];
+      entries.push({ id: did(), type: 'diaper', startMin: t, state: states[rnd(0, states.length - 1)] });
+    }
+    // うんち: 1〜2回
+    const poops = rnd(1, 2);
+    for (let i = 0; i < poops; i++) {
+      const t = rnd(6, 21) * 60 + rnd(0, 59);
+      if (isToday && t > nowMin) continue;
+      const ps = ['ふつう', 'ふつう', 'ゆるい', '緑色'];
+      entries.push({ id: did(), type: 'poop', startMin: t, state: ps[rnd(0, ps.length - 1)], amount: ['少', '中', '中', '多'][rnd(0, 3)] });
+    }
+
+    // 睡眠: 夜のまとまった睡眠 + 昼寝2〜3回
+    const naps = [
+      [rnd(0, 30), rnd(5, 6) * 60 + rnd(0, 40)],        // 夜間（前夜から朝）
+      [9 * 60 + rnd(0, 40), 10 * 60 + rnd(20, 50)],     // 午前寝
+      [13 * 60 + rnd(0, 40), 15 * 60 + rnd(0, 50)],     // 午後寝
+      [17 * 60 + rnd(0, 30), 18 * 60 + rnd(0, 30)],     // 夕寝
+    ];
+    naps.forEach(([s, e]) => {
+      if (isToday && s > nowMin) return;
+      entries.push({ id: did(), type: 'sleep', startMin: s, endMin: Math.min(e, isToday ? nowMin : e) });
+    });
+
+    // 体温: 1日1回（朝の検温）
+    const tt = 7 * 60 + rnd(0, 40);
+    if (!(isToday && tt > nowMin)) {
+      entries.push({ id: did(), type: 'temp', startMin: tt, value: Math.round((36.5 + Math.random() * 0.6) * 10) / 10 });
+    }
+
+    let memo = '';
+    if (back === 3) memo = '今日はよく笑ってくれた。寝返りしそうな素ぶり。';
+    if (back === 10) memo = '少し鼻づまり気味。授乳は問題なし。';
+    data[dateStr] = { entries, memo };
+  }
+
+  // 成長記録: 出生〜直近まで数点（月齢相当の自然な値, 体重はg）
+  const growth = [
+    { id: did(), date: todayStr(birth), weight: 3100, height: 49.5 },
+    { id: did(), date: shiftDate(birth, 30),  weight: 4300, height: 54.5 },
+    { id: did(), date: shiftDate(birth, 60),  weight: 5400, height: 58.0 },
+    { id: did(), date: shiftDate(birth, 90),  weight: 6300, height: 60.5 },
+    { id: did(), date: shiftDate(birth, 98),  weight: 6500, height: 61.0 },
+  ];
+
+  // マイルストーン: 月齢相当で数件
+  const milestones = {
+    smile: shiftDate(birth, 58),
+    neck:  shiftDate(birth, 95),
+    laugh: shiftDate(birth, 92),
+  };
+
+  // 予防接種: 2〜3ヶ月分を接種済みに
+  const vax = {
+    rota: shiftDate(birth, 62),
+    hib1: shiftDate(birth, 62),
+    pcv1: shiftDate(birth, 62),
+    hbv1: shiftDate(birth, 62),
+    hib2: shiftDate(birth, 93),
+    pcv2: shiftDate(birth, 93),
+    dpt1: shiftDate(birth, 93),
+    hbv2: shiftDate(birth, 93),
+  };
+
+  // 通院記録
+  const medical = [
+    { id: did(), date: shiftDate(birth, 30), type: '通院', title: '1ヶ月健診', note: '体重・身長ともに順調。問題なし。' },
+    { id: did(), date: shiftDate(birth, 62), type: '通院', title: '予防接種（2ヶ月）', note: 'ロタ・ヒブ・肺炎球菌・B型肝炎。発熱なし。' },
+  ];
+
+  return { birthStr, data, growth, milestones, vax, medical };
+}
+
+function shiftDate(base, days) {
+  const d = new Date(base); d.setDate(d.getDate() + days);
+  return todayStr(d);
+}
+
+function loadDemoData() {
+  // 投入前の状態を退避
+  const backup = {};
+  DEMO_KEYS.forEach(k => { backup[k] = localStorage.getItem(k); });
+  localStorage.setItem(DEMO_BACKUP_KEY, JSON.stringify(backup));
+
+  const demo = buildDemoData();
+  state.data = demo.data;
+  state.growth = demo.growth;
+  state.settings = Object.assign({}, state.settings, { birthDate: demo.birthStr });
+  state.vax = demo.vax;
+  state.favorites = [];
+  state.milestones = demo.milestones;
+  state.medical = demo.medical;
+
+  saveAll(); saveGrowth();
+  saveJSON(SETTINGS_KEY, state.settings);
+  saveJSON(VAX_KEY, state.vax);
+  saveJSON(FAV_KEY, state.favorites);
+  saveJSON(MILESTONE_KEY, state.milestones);
+  saveJSON(MEDICAL_KEY, state.medical);
+  localStorage.setItem(DEMO_FLAG_KEY, '1');
+
+  state.current = todayStr();
+  render();
+  renderDemoUI();
+  switchTab('today');
+}
+
+function resetDemoData() {
+  // 退避した状態に完全復元
+  const raw = localStorage.getItem(DEMO_BACKUP_KEY);
+  const backup = raw ? JSON.parse(raw) : {};
+  DEMO_KEYS.forEach(k => {
+    const v = backup[k];
+    if (v == null) localStorage.removeItem(k);
+    else localStorage.setItem(k, v);
+  });
+  localStorage.removeItem(DEMO_BACKUP_KEY);
+  localStorage.removeItem(DEMO_FLAG_KEY);
+
+  // state を再読込
+  state.data = loadAll();
+  state.growth = loadGrowth();
+  state.settings = loadJSON(SETTINGS_KEY, {});
+  state.vax = loadJSON(VAX_KEY, {});
+  state.favorites = loadJSON(FAV_KEY, []);
+  state.milestones = loadJSON(MILESTONE_KEY, {});
+  state.medical = loadJSON(MEDICAL_KEY, []);
+  state.current = todayStr();
+
+  render();
+  renderDemoUI();
+  switchTab('today');
+}
+
+function renderDemoUI() {
+  const prompt = document.getElementById('demoPrompt');
+  const banner = document.getElementById('demoBanner');
+  if (isDemoActive()) {
+    prompt.style.display = 'none';
+    banner.style.display = 'flex';
+  } else {
+    banner.style.display = 'none';
+    prompt.style.display = isAllEmpty() ? 'flex' : 'none';
+  }
+}
+
+document.getElementById('demoLoadBtn').addEventListener('click', loadDemoData);
+document.getElementById('demoResetBtn').addEventListener('click', () => {
+  if (!confirm('デモデータを消去して元の状態に戻します。よろしいですか？')) return;
+  resetDemoData();
+});
+
 render();
+renderDemoUI();
 </script>
 </body>
 </html>
