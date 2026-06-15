@@ -1367,14 +1367,14 @@
 </div>
 
 <script>
-const STORAGE_KEY = 'baby-tracker-v1';
-const GROWTH_KEY = 'baby-tracker-growth-v1';
-const SETTINGS_KEY = 'baby-tracker-settings-v1';
-const VAX_KEY = 'baby-tracker-vax-v1';
-const FAV_KEY = 'baby-tracker-favorites-v1';
-const MILESTONE_KEY = 'baby-tracker-milestones-v1';
-const PHOTO_KEY = 'baby-tracker-photos-v1';
-const MEDICAL_KEY = 'baby-tracker-medical-v1';
+const STORAGE_KEY = 'kl-baby-tracker-v1';
+const GROWTH_KEY = 'kl-baby-tracker-growth-v1';
+const SETTINGS_KEY = 'kl-baby-tracker-settings-v1';
+const VAX_KEY = 'kl-baby-tracker-vax-v1';
+const FAV_KEY = 'kl-baby-tracker-favorites-v1';
+const MILESTONE_KEY = 'kl-baby-tracker-milestones-v1';
+const PHOTO_KEY = 'kl-baby-tracker-photos-v1';
+const MEDICAL_KEY = 'kl-baby-tracker-medical-v1';
 
 const state = {
   data: loadAll(),
@@ -2772,8 +2772,8 @@ function exportCSV() {
 // 押すと架空のサンプル（生後3〜4ヶ月）を投入する。
 // 投入前の全キーを DEMO_BACKUP_KEY に退避し、リセットで完全復元する。
 const DEMO_KEYS = [STORAGE_KEY, GROWTH_KEY, SETTINGS_KEY, VAX_KEY, FAV_KEY, MILESTONE_KEY, PHOTO_KEY, MEDICAL_KEY];
-const DEMO_BACKUP_KEY = 'baby-tracker-demo-backup-v1';
-const DEMO_FLAG_KEY = 'baby-tracker-demo-active-v1';
+const DEMO_BACKUP_KEY = 'kl-baby-tracker-demo-backup-v1';
+const DEMO_FLAG_KEY = 'kl-baby-tracker-demo-active-v1';
 
 function isDemoActive() { return localStorage.getItem(DEMO_FLAG_KEY) === '1'; }
 
@@ -2968,11 +2968,11 @@ function renderDemoUI() {
 document.getElementById('demoLoadBtn').addEventListener('click', loadDemoData);
 document.getElementById('demoResetBtn').addEventListener('click', () => {
   if (!confirm('デモデータを消去して元の状態に戻します。よろしいですか？')) return;
-  sessionStorage.setItem('baby-tracker-demo-dismissed-session', '1');
+  sessionStorage.setItem('kl-baby-tracker-demo-dismissed-session', '1');
   resetDemoData();
 });
 
-if (isAllEmpty() && !sessionStorage.getItem('baby-tracker-demo-dismissed-session')) {
+if (isAllEmpty() && !sessionStorage.getItem('kl-baby-tracker-demo-dismissed-session')) {
   loadDemoData();
 } else {
   render();
