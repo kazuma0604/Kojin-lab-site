@@ -2968,11 +2968,16 @@ function renderDemoUI() {
 document.getElementById('demoLoadBtn').addEventListener('click', loadDemoData);
 document.getElementById('demoResetBtn').addEventListener('click', () => {
   if (!confirm('デモデータを消去して元の状態に戻します。よろしいですか？')) return;
+  localStorage.setItem('baby-tracker-demo-dismissed-v1', '1');
   resetDemoData();
 });
 
-render();
-renderDemoUI();
+if (isAllEmpty() && !isDemoActive() && !localStorage.getItem('baby-tracker-demo-dismissed-v1')) {
+  loadDemoData();
+} else {
+  render();
+  renderDemoUI();
+}
 </script>
 </body>
 </html>
