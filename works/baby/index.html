@@ -2968,11 +2968,11 @@ function renderDemoUI() {
 document.getElementById('demoLoadBtn').addEventListener('click', loadDemoData);
 document.getElementById('demoResetBtn').addEventListener('click', () => {
   if (!confirm('デモデータを消去して元の状態に戻します。よろしいですか？')) return;
-  localStorage.setItem('baby-tracker-demo-dismissed-v1', '1');
+  sessionStorage.setItem('baby-tracker-demo-dismissed-session', '1');
   resetDemoData();
 });
 
-if (isAllEmpty() && !isDemoActive() && !localStorage.getItem('baby-tracker-demo-dismissed-v1')) {
+if (isAllEmpty() && !sessionStorage.getItem('baby-tracker-demo-dismissed-session')) {
   loadDemoData();
 } else {
   render();
