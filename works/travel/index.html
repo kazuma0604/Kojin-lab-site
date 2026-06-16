@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>たびAI｜AI旅行プランナー</title>
+<meta name="description" content="行き先・日数・好みを入れるだけで、AIが1日ごとの旅程を提案。たびAIは、旅の計画をいちばん楽しい時間にするAI旅行プランナーです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f8fc; --paper:#ffffff; --ink:#1e293b; --soft:#64748b; --line:#e6ebf3;
+  --sky:#2563eb; --cyan:#0ea5e9; --indigo:#6366f1; --coral:#ff6b5e; --mint:#10b981; --amber:#f59e0b;
+  --grad:linear-gradient(120deg,#0ea5e9,#6366f1);
+  --grad-soft:linear-gradient(120deg,#e0f2fe,#eef2ff);
+  --sans:"Noto Sans JP",sans-serif; --disp:"Poppins",sans-serif; --ease:cubic-bezier(.16,1,.3,1);
+  --shadow:0 10px 30px rgba(30,41,59,.08); --shadow-lg:0 24px 60px rgba(30,41,59,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+.disp{font-family:var(--disp)}
+.demo-ribbon{position:fixed;top:15px;left:-44px;transform:rotate(-45deg);background:var(--coral);color:#fff;font-size:11px;letter-spacing:2px;padding:6px 52px;z-index:400;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(246,248,252,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:var(--disp);font-weight:800;font-size:22px;display:flex;align-items:center;gap:8px}
+.logo .mark{width:32px;height:32px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
+.logo .ai{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.htag{font-size:12px;color:var(--soft);background:var(--grad-soft);padding:5px 12px;border-radius:999px;font-weight:700}
+/* hero */
+.hero{text-align:center;padding:54px 0 30px;position:relative;overflow:hidden}
+.hero .pill{display:inline-flex;align-items:center;gap:7px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-size:13px;color:var(--sky);font-weight:700;box-shadow:var(--shadow);margin-bottom:20px}
+.hero h1{font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.35;letter-spacing:.5px;margin-bottom:14px}
+.hero h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--soft);font-size:clamp(14px,2vw,16px);max-width:560px;margin:0 auto}
+/* form card */
+.planner{background:var(--paper);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow-lg);padding:30px;margin:24px 0 60px}
+.field{margin-bottom:24px}
+.field>label{display:block;font-weight:700;font-size:14px;margin-bottom:10px}
+.field>label small{color:var(--soft);font-weight:400;margin-left:6px}
+.dest-input{width:100%;border:2px solid var(--line);border-radius:14px;padding:15px 16px;font-size:16px;font-family:inherit;transition:.25s}
+.dest-input:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 4px rgba(37,99,235,.1)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 16px;font-size:13.5px;cursor:pointer;transition:.2s var(--ease);font-weight:500}
+.chip:hover{border-color:var(--sky);color:var(--sky)}
+.chip.on{background:var(--grad);color:#fff;border-color:transparent}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.seg{display:flex;border:2px solid var(--line);border-radius:14px;overflow:hidden}
+.seg button{flex:1;border:0;background:var(--paper);padding:13px 6px;font-family:inherit;font-size:14px;cursor:pointer;color:var(--soft);font-weight:600;transition:.2s}
+.seg button.on{background:var(--grad-soft);color:var(--sky)}
+.days-stepper{display:flex;align-items:center;gap:14px}
+.days-stepper button{width:46px;height:46px;border-radius:12px;border:2px solid var(--line);background:var(--paper);font-size:22px;cursor:pointer;color:var(--sky);font-weight:700;transition:.2s}
+.days-stepper button:hover{border-color:var(--sky)}
+.days-stepper .val{font-family:var(--disp);font-size:26px;font-weight:800;min-width:60px;text-align:center}
+.days-stepper .val small{font-size:14px;color:var(--soft);font-weight:400}
+.interests{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.int{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:14px;padding:13px 14px;cursor:pointer;transition:.2s var(--ease);font-weight:600;font-size:14px}
+.int:hover{border-color:var(--sky)}
+.int.on{border-color:var(--sky);background:var(--grad-soft);color:var(--sky)}
+.int .em{font-size:20px}
+.go{width:100%;margin-top:8px;border:0;border-radius:16px;background:var(--grad);color:#fff;padding:18px;font-size:17px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 14px 30px rgba(37,99,235,.3);transition:.25s var(--ease);display:flex;align-items:center;justify-content:center;gap:10px}
+.go:hover{transform:translateY(-2px);box-shadow:0 20px 44px rgba(99,102,241,.4)}
+.go .spark{animation:spark 2s ease-in-out infinite}
+@keyframes spark{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.2) rotate(15deg)}}
+.note{font-size:12px;color:var(--soft);text-align:center;margin-top:14px}
+/* loading */
+.loading{display:none;text-align:center;padding:70px 0}
+.loading.show{display:block}
+.loader-globe{font-size:64px;display:inline-block;animation:spin 2.4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading h3{font-size:18px;margin:22px 0 8px}
+.loading .step{color:var(--soft);font-size:14px;min-height:22px;transition:.3s}
+.loadbar{width:min(340px,80%);height:6px;border-radius:99px;background:var(--line);margin:22px auto 0;overflow:hidden}
+.loadbar i{display:block;height:100%;width:0;background:var(--grad);border-radius:99px;transition:width .4s var(--ease)}
+/* result */
+.result{display:none}
+.result.show{display:block;animation:fade .6s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.res-head{background:var(--grad);color:#fff;border-radius:24px;padding:30px 28px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;margin-bottom:10px}
+.res-head::after{content:"✈";position:absolute;font-size:160px;opacity:.12;right:-10px;top:-30px;transform:rotate(15deg)}
+.res-head .label{font-family:var(--disp);font-size:12px;letter-spacing:2px;opacity:.9;text-transform:uppercase}
+.res-head h2{font-size:clamp(24px,4vw,34px);font-weight:900;margin:6px 0 14px;position:relative}
+.res-meta{display:flex;flex-wrap:wrap;gap:10px;position:relative}
+.res-meta span{background:rgba(255,255,255,.2);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;backdrop-filter:blur(4px)}
+.ai-intro{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--sky);border-radius:14px;padding:18px 20px;margin:18px 0 26px;font-size:14.5px;color:#334155;display:flex;gap:12px}
+.ai-intro .av{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
+/* day */
+.day{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden}
+.day-head{display:flex;align-items:center;gap:14px;padding:20px 24px;border-bottom:1px solid var(--line)}
+.day-num{width:52px;height:52px;border-radius:14px;background:var(--grad-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.day-num .d{font-family:var(--disp);font-weight:800;font-size:20px;color:var(--sky);line-height:1}
+.day-num .l{font-size:9px;color:var(--sky);letter-spacing:1px}
+.day-head h3{font-size:17px}
+.day-head .theme{font-size:12.5px;color:var(--soft)}
+.timeline{padding:8px 24px 22px}
+.tl{display:flex;gap:16px;padding:16px 0;border-bottom:1px dashed var(--line);position:relative}
+.tl:last-child{border-bottom:0}
+.tl-time{flex-shrink:0;width:54px;font-family:var(--disp);font-weight:700;font-size:14px;color:var(--sky);padding-top:2px}
+.tl-ic{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:22px}
+.tl-body{flex:1}
+.tl-body h4{font-size:15.5px;margin-bottom:3px}
+.tl-body p{font-size:13px;color:var(--soft)}
+.tl-move{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--soft);background:var(--bg);padding:3px 10px;border-radius:999px;margin-top:7px}
+.tl-tag{font-size:10.5px;font-weight:700;color:#fff;padding:2px 8px;border-radius:6px;margin-left:8px;vertical-align:middle}
+.day-memo{background:var(--grad-soft);margin:0 24px 22px;border-radius:14px;padding:14px 18px;font-size:13.5px;color:#3730a3;display:flex;gap:10px}
+.day-memo .em{flex-shrink:0}
+/* budget + actions */
+.budget{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin:26px 0;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.budget .big{font-family:var(--disp);font-weight:800;font-size:26px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.budget .lbl{font-size:13px;color:var(--soft)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:60px}
+.btn{flex:1;min-width:160px;border-radius:14px;padding:15px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;transition:.25s var(--ease);border:2px solid var(--line);background:var(--paper);color:var(--ink)}
+.btn:hover{border-color:var(--sky);color:var(--sky)}
+.btn.primary{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 12px 26px rgba(37,99,235,.28)}
+.btn.primary:hover{transform:translateY(-2px);color:#fff}
+footer{border-top:1px solid var(--line);text-align:center;padding:32px 0;color:var(--soft);font-size:12.5px}
+footer .logo{justify-content:center;font-size:18px;margin-bottom:10px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 22px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:.3s var(--ease);z-index:300}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:680px){
+  .row,.interests{grid-template-columns:1fr}
+  .interests{grid-template-columns:1fr 1fr}
+  .planner{padding:22px}
+  .htag{display:none}
+}
+@media print{
+  header,.hero,.planner,.actions,.demo-ribbon,footer,.go{display:none!important}
+  .result{display:block!important}
+  body{background:#fff}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="demo-ribbon">DEMO</div>
+
+<header>
+  <div class="wrap hd">
+    <div class="logo"><span class="mark">✈</span>たび<span class="ai">AI</span></div>
+    <span class="htag">⚡ AIが30秒で旅程を作成</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 入力 -->
+  <section id="formView">
+    <div class="hero">
+      <span class="pill">🤖 AI旅行プランナー</span>
+      <h1>行きたい場所を入れるだけ。<br><span class="g">あなただけの旅程</span>をAIが提案。</h1>
+      <p>目的地・日数・好みを選ぶだけで、1日ごとのモデルコースが完成。計画にかかる時間を、わくわくする時間に変えます。</p>
+    </div>
+
+    <div class="planner">
+      <div class="field">
+        <label>どこへ行きますか？ <small>都市名・国名・エリアなど</small></label>
+        <input class="dest-input" id="dest" type="text" placeholder="例：京都、沖縄、パリ、北海道…" autocomplete="off">
+        <div class="chips" id="destChips">
+          <span class="chip" data-d="京都">⛩ 京都</span>
+          <span class="chip" data-d="沖縄">🏝 沖縄</span>
+          <span class="chip" data-d="札幌">🍜 札幌</span>
+          <span class="chip" data-d="東京">🗼 東京</span>
+          <span class="chip" data-d="パリ">🗼 パリ</span>
+          <span class="chip" data-d="バンコク">🛕 バンコク</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>日数</label>
+          <div class="days-stepper">
+            <button id="dayMinus" aria-label="減らす">−</button>
+            <div class="val"><span id="dayVal">3</span><small>日間</small></div>
+            <button id="dayPlus" aria-label="増やす">＋</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>予算感 <small>1人・1日あたり</small></label>
+          <div class="seg" id="budgetSeg">
+            <button data-b="saver" class="on">節約</button>
+            <button data-b="standard">標準</button>
+            <button data-b="luxury">贅沢</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>旅のスタイル <small>気になるものを選んでください（複数可）</small></label>
+        <div class="interests" id="interests">
+          <div class="int" data-i="gourmet"><span class="em">🍜</span>グルメ</div>
+          <div class="int" data-i="view"><span class="em">📷</span>絶景・写真</div>
+          <div class="int" data-i="culture"><span class="em">⛩</span>歴史・文化</div>
+          <div class="int" data-i="active"><span class="em">🚴</span>アクティブ</div>
+          <div class="int" data-i="relax"><span class="em">♨</span>のんびり</div>
+          <div class="int" data-i="shopping"><span class="em">🛍</span>買い物</div>
+        </div>
+      </div>
+
+      <button class="go" id="go"><span class="spark">✨</span>AIにプランを作ってもらう</button>
+      <p class="note">※ これはポートフォリオ用のデモです。AIの生成を再現したサンプル旅程を表示します。</p>
+    </div>
+  </section>
+
+  <!-- ローディング -->
+  <section class="loading" id="loading">
+    <span class="loader-globe">🌏</span>
+    <h3 id="loadTitle">AIがプランを考えています…</h3>
+    <div class="step" id="loadStep">行き先の情報を集めています</div>
+    <div class="loadbar"><i id="loadBar"></i></div>
+  </section>
+
+  <!-- 結果 -->
+  <section class="result" id="result"></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><span class="mark">✈</span>たび<span class="ai">AI</span></div>
+    AI旅行プランナー（架空サービスのデモ）／ 個人開発Lab
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== state =====
+const state = { dest:'', days:3, budget:'saver', interests:[] };
+const $ = s => document.querySelector(s);
+
+// ===== inputs =====
+const destInput = $('#dest');
+$('#destChips').addEventListener('click', e => {
+  const c = e.target.closest('.chip'); if(!c) return;
+  destInput.value = c.dataset.d;
+  document.querySelectorAll('#destChips .chip').forEach(x=>x.classList.toggle('on', x===c));
+});
+destInput.addEventListener('input', ()=>document.querySelectorAll('#destChips .chip').forEach(x=>x.classList.remove('on')));
+
+$('#dayMinus').onclick = ()=>{ state.days=Math.max(1,state.days-1); $('#dayVal').textContent=state.days; };
+$('#dayPlus').onclick = ()=>{ state.days=Math.min(7,state.days+1); $('#dayVal').textContent=state.days; };
+
+$('#budgetSeg').addEventListener('click', e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  state.budget=b.dataset.b;
+  document.querySelectorAll('#budgetSeg button').forEach(x=>x.classList.toggle('on',x===b));
+});
+
+$('#interests').addEventListener('click', e=>{
+  const it=e.target.closest('.int'); if(!it)return;
+  it.classList.toggle('on');
+  state.interests = [...document.querySelectorAll('#interests .int.on')].map(x=>x.dataset.i);
+});
+
+// ===== destination spot data =====
+// cat: gourmet/view/culture/active/relax/shopping
+const DEST = {
+  '京都':[
+    {n:'清水寺と二年坂さんぽ',e:'⛩',c:'culture',d:'朝の澄んだ空気の中、世界遺産を参拝。'},
+    {n:'伏見稲荷大社 千本鳥居',e:'⛩',c:'view',d:'朱色の鳥居が続く絶景フォトスポット。'},
+    {n:'錦市場で食べ歩き',e:'🍢',c:'gourmet',d:'「京の台所」で湯葉や生麩を味わう。'},
+    {n:'嵐山 竹林の小径',e:'🎋',c:'view',d:'見上げるほどの竹林を散策。'},
+    {n:'湯葉と京野菜の和ランチ',e:'🍱',c:'gourmet',d:'季節の京料理を上品なお店で。'},
+    {n:'金閣寺',e:'🏯',c:'culture',d:'水面に映る金色の楼閣は必見。'},
+    {n:'祇園・花見小路の町家カフェ',e:'🍵',c:'relax',d:'抹茶スイーツでひと休み。'},
+    {n:'先斗町で京の夜ごはん',e:'🏮',c:'gourmet',d:'鴨川沿いの路地で和の夜を。'},
+    {n:'保津川下り',e:'🚣',c:'active',d:'渓谷を舟でめぐるスリル体験。'},
+    {n:'京都駅ビルでお土産探し',e:'🛍',c:'shopping',d:'和雑貨・八つ橋をまとめ買い。'}
+  ],
+  '沖縄':[
+    {n:'首里城公園',e:'🏯',c:'culture',d:'琉球王国の歴史にふれる。'},
+    {n:'美ら海水族館',e:'🐠',c:'view',d:'巨大水槽のジンベエザメは圧巻。'},
+    {n:'古宇利大橋ドライブ',e:'🚗',c:'view',d:'エメラルドの海を渡る絶景の橋。'},
+    {n:'沖縄そばランチ',e:'🍜',c:'gourmet',d:'出汁の効いた郷土の味。'},
+    {n:'青の洞窟シュノーケル',e:'🤿',c:'active',d:'透明な海で熱帯魚と泳ぐ。'},
+    {n:'国際通りで食べ歩き&買い物',e:'🛍',c:'shopping',d:'紅いもタルト・島ぞうり探し。'},
+    {n:'ビーチでサンセット',e:'🌅',c:'relax',d:'波の音を聞きながら夕陽を。'},
+    {n:'やちむんの里めぐり',e:'🏺',c:'culture',d:'味のある沖縄の器に出会う。'},
+    {n:'アグー豚しゃぶの夕食',e:'🐖',c:'gourmet',d:'とろける島ブランド豚を堪能。'},
+    {n:'カフェでブルーシールアイス',e:'🍦',c:'relax',d:'南国の甘いひととき。'}
+  ],
+  '札幌':[
+    {n:'大通公園さんぽ',e:'🌳',c:'view',d:'季節の花とテレビ塔を望む。'},
+    {n:'味噌ラーメンの名店ランチ',e:'🍜',c:'gourmet',d:'濃厚スープで体の芯から温まる。'},
+    {n:'白い恋人パーク',e:'🍫',c:'culture',d:'お菓子作り体験とお土産。'},
+    {n:'藻岩山ロープウェイ夜景',e:'🌃',c:'view',d:'日本新三大夜景のきらめき。'},
+    {n:'二条市場で海鮮丼',e:'🦀',c:'gourmet',d:'新鮮なウニ・イクラを贅沢に。'},
+    {n:'モエレ沼公園',e:'🗻',c:'active',d:'広大なアート公園をサイクリング。'},
+    {n:'サッポロビール園でジンギスカン',e:'🍺',c:'gourmet',d:'できたてビールと羊肉を。'},
+    {n:'狸小路でショッピング',e:'🛍',c:'shopping',d:'アーケード商店街をぶらり。'},
+    {n:'温泉でほっこり',e:'♨',c:'relax',d:'旅の疲れを癒やす。'},
+    {n:'円山公園と北海道神宮',e:'⛩',c:'culture',d:'静かな杜でお参り。'}
+  ],
+  '東京':[
+    {n:'浅草寺・仲見世通り',e:'⛩',c:'culture',d:'雷門から続く下町情緒。'},
+    {n:'築地で海鮮の朝ごはん',e:'🍣',c:'gourmet',d:'活気ある場外で握りを。'},
+    {n:'渋谷スクランブル&スカイ',e:'🏙',c:'view',d:'話題の展望台から都市を一望。'},
+    {n:'チームラボの没入アート',e:'🎨',c:'view',d:'光と映像に包まれる体験。'},
+    {n:'原宿・表参道ショッピング',e:'🛍',c:'shopping',d:'最新トレンドをチェック。'},
+    {n:'上野公園と博物館めぐり',e:'🏛',c:'culture',d:'アートと自然をのんびり。'},
+    {n:'東京湾クルーズ',e:'⛴',c:'active',d:'海から見る都市の景色。'},
+    {n:'銀座で大人の和ディナー',e:'🍱',c:'gourmet',d:'特別な夜にふさわしい一席。'},
+    {n:'カフェでひと休み',e:'☕',c:'relax',d:'路地裏の隠れ家カフェへ。'},
+    {n:'お台場の夜景とレインボーブリッジ',e:'🌉',c:'view',d:'ライトアップが美しい湾岸。'}
+  ],
+  'パリ':[
+    {n:'エッフェル塔',e:'🗼',c:'view',d:'パリの象徴を間近で。'},
+    {n:'ルーブル美術館',e:'🖼',c:'culture',d:'モナリザほか名画の宝庫。'},
+    {n:'モンマルトルの丘とサクレ・クール',e:'⛪',c:'view',d:'街を見下ろす芸術家の街。'},
+    {n:'カフェで本場のクロワッサン',e:'🥐',c:'gourmet',d:'テラスで優雅な朝を。'},
+    {n:'セーヌ川クルーズ',e:'⛴',c:'active',d:'川から名所をめぐる。'},
+    {n:'シャンゼリゼ通りでショッピング',e:'🛍',c:'shopping',d:'凱旋門までブランド街を散策。'},
+    {n:'ビストロでコース料理',e:'🍷',c:'gourmet',d:'ワインと共に本場の味を。'},
+    {n:'オルセー美術館',e:'🎨',c:'culture',d:'印象派の名作に出会う。'},
+    {n:'公園でピクニック',e:'🧺',c:'relax',d:'チーズとパンでのんびり。'},
+    {n:'夜のイルミネーション散歩',e:'✨',c:'view',d:'光の都の夜を歩く。'}
+  ],
+  'バンコク':[
+    {n:'ワット・ポー（涅槃仏）',e:'🛕',c:'culture',d:'黄金の巨大仏に圧倒される。'},
+    {n:'チャオプラヤー川のボート',e:'⛴',c:'active',d:'水の都を船で移動。'},
+    {n:'屋台でパッタイ&トムヤムクン',e:'🍜',c:'gourmet',d:'本場のスパイシーな味。'},
+    {n:'ワット・アルン（暁の寺）',e:'🛕',c:'view',d:'夕暮れに映える美しい仏塔。'},
+    {n:'チャトゥチャック市場',e:'🛍',c:'shopping',d:'巨大マーケットで宝探し。'},
+    {n:'タイ古式マッサージ',e:'💆',c:'relax',d:'旅の疲れをほぐす。'},
+    {n:'ルーフトップバーで夜景',e:'🍸',c:'view',d:'高層階から都市の光を。'},
+    {n:'王宮とエメラルド寺院',e:'👑',c:'culture',d:'タイ随一の荘厳な建築。'},
+    {n:'マンゴースイーツのカフェ',e:'🥭',c:'relax',d:'南国フルーツで涼を。'},
+    {n:'川沿いのシーフードディナー',e:'🦐',c:'gourmet',d:'新鮮な海の幸を豪快に。'}
+  ]
+};
+// 汎用（未登録の行き先用）
+function genericSpots(dest){
+  return [
+    {n:dest+'の中心街さんぽ',e:'🚶',c:'view',d:'まずは街の雰囲気を感じる。'},
+    {n:'地元で人気のローカルランチ',e:'🍽',c:'gourmet',d:'その土地ならではの一皿。'},
+    {n:dest+'の名所・ランドマーク',e:'📷',c:'view',d:'定番の絶景スポットへ。'},
+    {n:'歴史を感じる街並み散策',e:'🏛',c:'culture',d:'古い建物や寺社をめぐる。'},
+    {n:'カフェでひと休み',e:'☕',c:'relax',d:'地元のカフェでまったり。'},
+    {n:'人気のディナースポット',e:'🍷',c:'gourmet',d:'夜は名物料理に舌鼓。'},
+    {n:'アクティビティ体験',e:'🚴',c:'active',d:'自然や街をアクティブに楽しむ。'},
+    {n:'市場・商店街でお買い物',e:'🛍',c:'shopping',d:'お土産とローカルグルメを探す。'},
+    {n:'展望スポットで景色を一望',e:'🌆',c:'view',d:'高台から街を見渡す。'},
+    {n:'温浴・スパでリフレッシュ',e:'♨',c:'relax',d:'体をいたわる時間。'}
+  ];
+}
+
+const CAT_TAG = {
+  gourmet:{t:'グルメ',c:'#f59e0b'}, view:{t:'絶景',c:'#0ea5e9'}, culture:{t:'文化',c:'#8b5cf6'},
+  active:{t:'体験',c:'#10b981'}, relax:{t:'のんびり',c:'#ec4899'}, shopping:{t:'買い物',c:'#ef4444'}
+};
+const MOVES = ['徒歩約8分','徒歩約12分','電車で約15分','バスで約20分','タクシーで約10分','レンタカーで約25分'];
+const DAY_THEMES = ['定番をおさえる王道コース','地元の魅力を深掘りする日','少し足をのばす冒険デー','のんびり満喫する日','街歩きと食を楽しむ日','絶景とアクティブの欲ばり日'];
+const SLOTS = [
+  {t:'09:00',label:'午前'},{t:'11:00',label:'午前'},{t:'12:30',label:'ランチ',forceCat:'gourmet'},
+  {t:'14:30',label:'午後'},{t:'16:30',label:'夕方'},{t:'18:30',label:'ディナー',forceCat:'gourmet'}
+];
+const BUDGET = {
+  saver:{label:'節約',per:8000,hotel:'ゲストハウス・ビジネスホテル',memo:'コスパ重視で、無料スポットや食べ歩きを多めに。'},
+  standard:{label:'標準',per:16000,hotel:'シティホテル・人気の宿',memo:'観光と食事をバランスよく楽しむ王道プラン。'},
+  luxury:{label:'贅沢',per:35000,hotel:'高級ホテル・温泉旅館',memo:'特別な体験と上質な食事で、記念の旅に。'}
+};
+
+function pickPool(dest, interests){
+  let pool = DEST[dest] ? DEST[dest].slice() : genericSpots(dest||'この街');
+  // 興味でフィルタ（gourmetは常に確保）。選択ゼロなら全部。
+  if(interests.length){
+    const want = new Set(interests); want.add('gourmet');
+    const filtered = pool.filter(s=>want.has(s.c));
+    if(filtered.length>=4) pool = filtered;
+  }
+  // シャッフル
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+  return pool;
+}
+
+function buildPlan(){
+  const dest = state.dest || 'この街';
+  const gourmet = (DEST[dest]||genericSpots(dest)).filter(s=>s.c==='gourmet');
+  const pool = pickPool(dest, state.interests);
+  let gi=0, pi=0;
+  const usedGourmet=()=>{ const s=gourmet[gi%gourmet.length]; gi++; return s; };
+  const nextSpot=()=>{ if(pi>=pool.length) pi=0; return pool[pi++]; };
+  const days=[];
+  for(let d=0; d<state.days; d++){
+    const items=[];
+    SLOTS.forEach((slot,idx)=>{
+      const spot = slot.forceCat==='gourmet' ? usedGourmet() : nextSpot();
+      items.push({
+        time:slot.t, spot,
+        move: idx<SLOTS.length-1 ? MOVES[Math.floor(Math.random()*MOVES.length)] : null
+      });
+    });
+    days.push({ theme: DAY_THEMES[d % DAY_THEMES.length], items });
+  }
+  return { dest, days };
+}
+
+function memoFor(day, i, dest){
+  const tips = [
+    `${dest}は朝が空いていて狙い目。早めの行動で人気スポットをゆったり楽しめます。`,
+    `移動の合間に地元のカフェへ。SNS映えする一枚も狙えます。`,
+    `歩く距離が長めの日。歩きやすい靴と水分補給を忘れずに。`,
+    `この日は無理せずのんびり。気に入った場所で長居するのもおすすめ。`,
+    `夕方の${day.items[3].spot.n.replace(/（.*）/,'')}は光がきれいな時間帯。カメラの準備を。`,
+    `ランチは混みやすいので、11:30頃の入店がスムーズです。`
+  ];
+  return tips[i % tips.length];
+}
+
+function render(plan){
+  const b = BUDGET[state.budget];
+  const styleLabels = state.interests.map(i=>CAT_TAG[i].t).join('・') || 'おまかせ';
+  let html = `
+    <div class="res-head">
+      <div class="label">Your AI Itinerary</div>
+      <h2>${esc(plan.dest)}・${state.days}日間の旅</h2>
+      <div class="res-meta">
+        <span>🗓 ${state.days}日間</span>
+        <span>💴 ${b.label}プラン</span>
+        <span>🎯 ${esc(styleLabels)}</span>
+      </div>
+    </div>
+    <div class="ai-intro">
+      <span class="av">🤖</span>
+      <div>${esc(plan.dest)}の${state.days}日間プランができました！${b.memo}各スポットは「${esc(styleLabels)}」のお好みに合わせて選んでいます。気に入らなければ何度でも作り直せます。</div>
+    </div>`;
+
+  plan.days.forEach((day,di)=>{
+    html += `
+    <div class="day">
+      <div class="day-head">
+        <div class="day-num"><span class="d">${di+1}</span><span class="l">DAY</span></div>
+        <div><h3>${di+1}日目</h3><div class="theme">${day.theme}</div></div>
+      </div>
+      <div class="timeline">`;
+    day.items.forEach(it=>{
+      const tag = CAT_TAG[it.spot.c];
+      html += `
+        <div class="tl">
+          <div class="tl-time">${it.time}</div>
+          <div class="tl-ic">${it.spot.e}</div>
+          <div class="tl-body">
+            <h4>${esc(it.spot.n)}<span class="tl-tag" style="background:${tag.c}">${tag.t}</span></h4>
+            <p>${esc(it.spot.d)}</p>
+            ${it.move?`<span class="tl-move">🚶 次のスポットまで ${it.move}</span>`:''}
+          </div>
+        </div>`;
+    });
+    html += `</div>
+      <div class="day-memo"><span class="em">💡</span><div>${esc(memoFor(day,di,plan.dest))}</div></div>
+    </div>`;
+  });
+
+  const total = b.per * state.days;
+  html += `
+    <div class="budget">
+      <div>
+        <div class="lbl">${b.label}プランの費用目安（1人・宿泊/交通別）</div>
+        <div class="big">約 ¥${total.toLocaleString()}〜</div>
+      </div>
+      <div class="lbl" style="flex:1;min-width:200px">食事・観光・体験の合計目安です。おすすめの宿タイプ：<b>${b.hotel}</b></div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="again">🔄 別のプランを作る</button>
+      <button class="btn" id="reset">最初からやり直す</button>
+      <button class="btn" id="printBtn">🖨 印刷・保存</button>
+    </div>`;
+
+  const res = $('#result');
+  res.innerHTML = html;
+  res.classList.add('show');
+  $('#again').onclick = ()=>{ generate(); };
+  $('#reset').onclick = ()=>{ res.classList.remove('show'); $('#formView').style.display=''; window.scrollTo({top:0,behavior:'smooth'}); };
+  $('#printBtn').onclick = ()=>window.print();
+}
+
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+// ===== loading + generate =====
+const loadSteps = [
+  '行き先の情報を集めています',
+  'おすすめスポットを選んでいます',
+  '移動ルートを最適化しています',
+  '1日ごとの時間割を組み立てています',
+  '最後の仕上げ中…'
+];
+function generate(){
+  $('#formView').style.display='none';
+  $('#result').classList.remove('show');
+  const ld=$('#loading'); ld.classList.add('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+  $('#loadTitle').textContent = `AIが${state.dest||'あなた'}の旅程を考えています…`;
+  let i=0; $('#loadBar').style.width='0';
+  const tick=()=>{
+    $('#loadStep').textContent = loadSteps[i];
+    $('#loadBar').style.width = ((i+1)/loadSteps.length*100)+'%';
+    i++;
+    if(i<loadSteps.length){ setTimeout(tick, 480); }
+    else {
+      setTimeout(()=>{
+        ld.classList.remove('show');
+        render(buildPlan());
+      }, 550);
+    }
+  };
+  tick();
+}
+
+$('#go').onclick = ()=>{
+  state.dest = destInput.value.trim();
+  if(!state.dest){ toast('行き先を入力してください ✈'); destInput.focus(); return; }
+  generate();
+};
+
+function toast(msg){
+  const t=$('#toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2200);
+}
+</script>
+</body>
+</html>

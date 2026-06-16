@@ -171,6 +171,7 @@ a{color:inherit;text-decoration:none}
 .work-thumb-usanavi{background:radial-gradient(circle at 30% 30%,#1a2a4a,#0a0f1e)}
 .work-thumb-kakeibo{background:radial-gradient(circle at 70% 30%,#0f2a3a,#0a0f1e)}
 .work-thumb-baby{background:radial-gradient(circle at 40% 35%,#4a2a44,#1e0f1e)}
+.work-thumb-travel{background:radial-gradient(circle at 50% 30%,#1e3a8a,#0a1530)}
 .work-thumb-cafe{background:radial-gradient(circle at 40% 35%,#5c4636,#241812)}
 .work-thumb-gym{background:radial-gradient(circle at 65% 30%,#2f3a14,#101208)}
 .work-demo{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1px;color:#0b0f1c;background:var(--cyan);padding:2px 8px;border-radius:4px;margin-left:6px;vertical-align:middle;font-weight:700}
