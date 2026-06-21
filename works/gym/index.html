@@ -44,6 +44,10 @@ header.scd{background:rgba(10,11,14,.85);backdrop-filter:blur(12px);border-botto
 .mtoggle.on span:nth-child(2){opacity:0}
 .mtoggle.on span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:110px 0 70px}
+.hero-bg{position:absolute;inset:0;z-index:0;background:
+  linear-gradient(90deg,rgba(10,11,14,.95) 0%,rgba(10,11,14,.72) 45%,rgba(10,11,14,.4) 100%),
+  linear-gradient(0deg,rgba(10,11,14,.92) 0%,rgba(10,11,14,0) 55%),
+  #0a0b0e url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1600&q=80&auto=format&fit=crop') center/cover}
 .hero-inner{position:relative;max-width:820px;z-index:2}
 .tagpill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 20px;font-size:13px;color:var(--lime);margin-bottom:28px;letter-spacing:1px}
 .tagpill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime);animation:bp 1.6s ease-in-out infinite}
@@ -164,6 +168,7 @@ footer .cp{color:#5e6470;font-size:12px;margin-top:14px}
 
 <main id="top">
   <section class="hero">
+    <div class="hero-bg"></div>
     <div class="wrap hero-inner">
       <span class="tagpill rv">完全個室 × マンツーマン</span>
       <h1 class="rv">なりたい体は、<br><span class="o">最短</span>で<span class="ol">つくれる</span>。</h1>
@@ -198,15 +203,15 @@ footer .cp{color:#5e6470;font-size:12px;margin-top:14px}
       <div class="shead rv"><span class="en">RESULTS</span><h2>結果が、証明。</h2></div>
       <div class="ba-grid">
         <div class="bac rv">
-          <div class="imgs"><div class="ph before"><span>BEFORE</span>🧍</div><div class="ph after"><span>AFTER</span>🏃</div></div>
+          <div class="imgs"><div class="ph before" style="background:#26282f url('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80&auto=format&fit=crop') center/cover"><span>BEFORE</span></div><div class="ph after" style="background:#1c2410 url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80&auto=format&fit=crop') center/cover"><span>AFTER</span></div></div>
           <div class="cap"><div class="who">T.Kさん<small>30代・男性</small></div><div class="res">-12.4kg</div><p>「健康診断で引っかかったのが入会のきっかけ。2ヶ月で見違えました。」</p></div>
         </div>
         <div class="bac rv">
-          <div class="imgs"><div class="ph before"><span>BEFORE</span>🧍</div><div class="ph after"><span>AFTER</span>💪</div></div>
+          <div class="imgs"><div class="ph before" style="background:#26282f url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80&auto=format&fit=crop') center/cover"><span>BEFORE</span></div><div class="ph after" style="background:#1c2410 url('https://images.unsplash.com/photo-1594381898411-846e7d193883?w=600&q=80&auto=format&fit=crop') center/cover"><span>AFTER</span></div></div>
           <div class="cap"><div class="who">M.Sさん<small>40代・女性</small></div><div class="res">-8.6kg</div><p>「食事を我慢せず痩せられたのが驚き。体型維持の習慣が身につきました。」</p></div>
         </div>
         <div class="bac rv">
-          <div class="imgs"><div class="ph before"><span>BEFORE</span>🧍</div><div class="ph after"><span>AFTER</span>🤸</div></div>
+          <div class="imgs"><div class="ph before" style="background:#26282f url('https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&auto=format&fit=crop') center/cover"><span>BEFORE</span></div><div class="ph after" style="background:#1c2410 url('https://images.unsplash.com/photo-1532384748853-8f54a8f476e2?w=600&q=80&auto=format&fit=crop') center/cover"><span>AFTER</span></div></div>
           <div class="cap"><div class="who">Y.Nさん<small>20代・女性</small></div><div class="res">-6.2kg</div><p>「結婚式までに、と駆け込みました。最高の状態で当日を迎えられました。」</p></div>
         </div>
       </div>
