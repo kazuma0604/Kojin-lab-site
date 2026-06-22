@@ -5,6 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>栞珈琲 -shiori coffee-｜本と珈琲のある暮らし</title>
 <meta name="description" content="栞珈琲は、自家焙煎のスペシャルティコーヒーと手作り焼き菓子の小さなカフェ。ゆっくり本が読める、街の止まり木です。">
+<link rel="canonical" href="https://kazuma0604.github.io/Kojin-lab-site/works/cafe/">
+<meta name="theme-color" content="#f5eee2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23bd6845'/%3E%3Ctext x='50' y='52' font-size='62' text-anchor='middle' dominant-baseline='central'%3E%E2%98%95%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23bd6845'/%3E%3Ctext x='50' y='52' font-size='62' text-anchor='middle' dominant-baseline='central'%3E%E2%98%95%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="栞珈琲 -shiori coffee-｜本と珈琲のある暮らし">
+<meta property="og:description" content="自家焙煎のスペシャルティコーヒーと手作り焼き菓子の小さなカフェ。本を片手に、何もしない時間を過ごせる街の止まり木です。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://kazuma0604.github.io/Kojin-lab-site/works/cafe/">
+<meta property="og:site_name" content="個人開発Lab">
+<meta property="og:image" content="https://kazuma0604.github.io/Kojin-lab-site/ogp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="栞珈琲 -shiori coffee-｜本と珈琲のある暮らし">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="栞珈琲 -shiori coffee-｜本と珈琲のある暮らし">
+<meta name="twitter:description" content="自家焙煎のスペシャルティコーヒーと手作り焼き菓子の小さなカフェ。本を片手に、何もしない時間を過ごせる街の止まり木です。">
+<meta name="twitter:image" content="https://kazuma0604.github.io/Kojin-lab-site/ogp.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -104,17 +122,15 @@ section{padding:120px 0;position:relative}
 .gallery .shead .en{color:var(--gold)}
 .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px}
 .gal{border-radius:6px;display:flex;align-items:flex-end;justify-content:flex-start;font-size:46px;position:relative;overflow:hidden;cursor:pointer}
-.gal::after{content:attr(data-cap);position:absolute;left:16px;bottom:14px;font-family:var(--garamond);font-style:italic;font-size:15px;color:rgba(255,255,255,.9);opacity:0;transform:translateY(8px);transition:.4s var(--ease)}
+.gal::after{content:attr(data-cap);position:absolute;left:16px;bottom:14px;font-family:var(--garamond);font-size:15px;color:rgba(255,255,255,.9);opacity:1;transform:none;z-index:2;text-shadow:0 1px 6px rgba(0,0,0,.65);font-style:normal;font-weight:600;transition:.4s var(--ease)}
 .gal:hover::after{opacity:1;transform:none}
-.gal .em{transition:transform .6s var(--ease);padding:16px}
-.gal:hover .em{transform:scale(1.18)}
 .gal.big{grid-column:span 2;grid-row:span 2}
 .g1{background:linear-gradient(135deg,#7a5238,#3a2519)}.g2{background:linear-gradient(135deg,#8a6a4a,#4c3826)}
 .g3{background:linear-gradient(135deg,#6f7a5a,#3c4528)}.g4{background:linear-gradient(135deg,#bd6845,#7a3a20)}
 .g5{background:linear-gradient(135deg,#5c4636,#2a1f17)}.g6{background:linear-gradient(135deg,#a88a5a,#6a5230)}
 .story{background:var(--cream);overflow:hidden}
 .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.story-img{height:440px;border-radius:8px;background:radial-gradient(circle at 40% 40%,#6f7a5a,#3c4528);display:flex;align-items:center;justify-content:center;font-size:90px;box-shadow:0 30px 60px rgba(42,31,23,.2);will-change:transform}
+.story-img{height:440px;border-radius:8px;background:radial-gradient(circle at 40% 40%,#6f7a5a,#3c4528);display:flex;align-items:center;justify-content:center;box-shadow:0 30px 60px rgba(42,31,23,.2);will-change:transform}
 .story-txt .en{font-family:var(--garamond);font-style:italic;color:var(--terra);letter-spacing:3px;font-size:16px}
 .story-txt h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,36px);margin:12px 0 22px;line-height:1.6}
 .story-txt p{color:var(--soft);margin-bottom:16px;font-size:15px}
@@ -157,11 +173,10 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:18px}
   .hero-stamp{right:8px;width:104px;height:104px}
 }
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}*{animation:none!important}}
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:2px}
 /* === 写真（フリー素材: Unsplash をホットリンク） === */
 .gal::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,12,8,.04),rgba(20,12,8,.7));z-index:1}
-.gal::after{opacity:1;transform:none;z-index:2;text-shadow:0 1px 6px rgba(0,0,0,.65);font-style:normal;font-weight:600}
 .gal:hover::before{background:linear-gradient(180deg,rgba(20,12,8,0),rgba(20,12,8,.5))}
-.gal .em{display:none}
 .story-img{font-size:0}
 </style>
 </head>
@@ -180,15 +195,15 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:18px}
       <a href="#info">店舗情報</a>
       <a href="#contact" class="gbtn">ご予約</a>
     </nav>
-    <button class="mtoggle" id="mtoggle" aria-label="メニュー"><span></span><span></span><span></span></button>
+    <button class="mtoggle" id="mtoggle" aria-label="メニュー" aria-controls="gnav" aria-expanded="false"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
   </div>
 </header>
 
 <main id="top">
-  <section class="hero wrap">
+  <section class="hero wrap" aria-labelledby="hero-h">
     <div class="hero-l">
       <p class="eyebrow rv">Book &amp; Coffee</p>
-      <h1 class="rv d1">ゆっくり、<br>一杯のための<br><span class="em">時間</span>を。</h1>
+      <h1 class="rv d1" id="hero-h">ゆっくり、<br>一杯のための<br><span class="em">時間</span>を。</h1>
       <p class="lead rv d2">自家焙煎のスペシャルティコーヒーと、手作りの焼き菓子。<br>本を片手に、何もしない時間を過ごせる。そんな街の止まり木です。</p>
       <div class="hero-actions rv d3">
         <a href="#menu" class="btn btn-fill">メニューを見る</a>
@@ -196,7 +211,7 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:18px}
       </div>
     </div>
     <div class="hero-r">
-      <div class="hero-photo" id="heroPhoto">
+      <div class="hero-photo" id="heroPhoto" role="img" aria-label="淹れたてのコーヒーカップ">
         <div class="bg" style="background:#2a1f17 url('https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=1100&q=80&auto=format&fit=crop') center/cover"></div>
       </div>
       <div class="hero-stamp"><span>自家焙煎</span><b>2015</b><span>SINCE</span></div>
@@ -205,13 +220,13 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:18px}
   </section>
 
   <div class="mq"><div class="mqt">
-    <span>自家焙煎</span><span class="dot">✦</span><span>手作り焼き菓子</span><span class="dot">✦</span><span>本のある空間</span><span class="dot">✦</span><span>スペシャルティ</span><span class="dot">✦</span>
-    <span>自家焙煎</span><span class="dot">✦</span><span>手作り焼き菓子</span><span class="dot">✦</span><span>本のある空間</span><span class="dot">✦</span><span>スペシャルティ</span><span class="dot">✦</span>
+    <span>自家焙煎</span><span class="dot" aria-hidden="true">✦</span><span>手作り焼き菓子</span><span class="dot" aria-hidden="true">✦</span><span>本のある空間</span><span class="dot" aria-hidden="true">✦</span><span>スペシャルティ</span><span class="dot" aria-hidden="true">✦</span>
+    <span aria-hidden="true">自家焙煎</span><span class="dot" aria-hidden="true">✦</span><span aria-hidden="true">手作り焼き菓子</span><span class="dot" aria-hidden="true">✦</span><span aria-hidden="true">本のある空間</span><span class="dot" aria-hidden="true">✦</span><span aria-hidden="true">スペシャルティ</span><span class="dot" aria-hidden="true">✦</span>
   </div></div>
 
-  <section class="concept" id="concept">
+  <section class="concept" id="concept" aria-labelledby="concept-h">
     <div class="wrap">
-      <div class="shead"><span class="en rv">Our Concept</span><h2 class="rv d1">栞珈琲の、こだわり</h2></div>
+      <div class="shead"><span class="en rv">Our Concept</span><h2 class="rv d1" id="concept-h">栞珈琲の、こだわり</h2></div>
       <div class="concept-grid">
         <div class="cc rv"><div class="ico">🫘</div><div class="no">01</div><h3>自家焙煎</h3><p>週に一度、店内の焙煎機で少量ずつ。豆の個性を引き出した、香り高い一杯を。</p></div>
         <div class="cc rv d1"><div class="ico">🍰</div><div class="no">02</div><h3>手作り焼き菓子</h3><p>季節の素材を使ったスコーンやパウンドケーキ。コーヒーに寄り添う甘さです。</p></div>
@@ -220,9 +235,9 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:18px}
     </div>
   </section>
 
-  <section id="menu">
+  <section id="menu" aria-labelledby="menu-h">
     <div class="wrap">
-      <div class="shead"><span class="en rv">Menu</span><h2 class="rv d1">おしながき</h2></div>
+      <div class="shead"><span class="en rv">Menu</span><h2 class="rv d1" id="menu-h">おしながき</h2></div>
       <div class="menu-grid">
         <div class="mi rv"><div class="mph">☕</div><div class="mb"><div class="mt"><h4>本日の珈琲</h4><span class="dots"></span><span class="price">¥520</span></div><p>日替わりのスペシャルティ。スタッフにお好みをどうぞ。</p></div></div>
         <div class="mi rv"><div class="mph">🥛</div><div class="mb"><div class="mt"><h4>カフェラテ</h4><span class="dots"></span><span class="price">¥580</span></div><p>深煎り豆と、なめらかなスチームミルクで。</p></div></div>
@@ -234,27 +249,27 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:18px}
     </div>
   </section>
 
-  <section class="gallery" id="gallery">
+  <section class="gallery" id="gallery" aria-labelledby="gallery-h">
     <div class="wrap">
-      <div class="shead"><span class="en rv">Gallery</span><h2 class="rv d1">店内の風景</h2></div>
+      <div class="shead"><span class="en rv">Gallery</span><h2 class="rv d1" id="gallery-h">店内の風景</h2></div>
       <div class="gal-grid">
-        <div class="gal g1 big rv" data-cap="ゆっくり過ごせる店内" style="background:#3a2519 url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=80&auto=format&fit=crop') center/cover"></div>
-        <div class="gal g2 rv d1" data-cap="自慢の自家焙煎" style="background:#4c3826 url('https://images.unsplash.com/photo-1442550528053-c431ecb55509?w=600&q=80&auto=format&fit=crop') center/cover"></div>
-        <div class="gal g3 rv d2" data-cap="緑のあるカウンター" style="background:#3c4528 url('https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=600&q=80&auto=format&fit=crop') center/cover"></div>
-        <div class="gal g4 rv" data-cap="淹れたての一杯" style="background:#7a3a20 url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80&auto=format&fit=crop') center/cover"></div>
-        <div class="gal g5 rv d1" data-cap="夜の灯り" style="background:#2a1f17 url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=80&auto=format&fit=crop') center/cover"></div>
-        <div class="gal g6 rv d2" data-cap="季節の焼き菓子" style="background:#6a5230 url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&q=80&auto=format&fit=crop') center/cover"></div>
+        <div class="gal g1 big rv" role="img" aria-label="ゆっくり過ごせる店内" data-cap="ゆっくり過ごせる店内" style="background:#3a2519 url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=80&auto=format&fit=crop') center/cover"></div>
+        <div class="gal g2 rv d1" role="img" aria-label="自慢の自家焙煎" data-cap="自慢の自家焙煎" style="background:#4c3826 url('https://images.unsplash.com/photo-1442550528053-c431ecb55509?w=600&q=80&auto=format&fit=crop') center/cover"></div>
+        <div class="gal g3 rv d2" role="img" aria-label="緑のあるカウンター" data-cap="緑のあるカウンター" style="background:#3c4528 url('https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=600&q=80&auto=format&fit=crop') center/cover"></div>
+        <div class="gal g4 rv" role="img" aria-label="淹れたての一杯" data-cap="淹れたての一杯" style="background:#7a3a20 url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80&auto=format&fit=crop') center/cover"></div>
+        <div class="gal g5 rv d1" role="img" aria-label="夜の灯り" data-cap="夜の灯り" style="background:#2a1f17 url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=80&auto=format&fit=crop') center/cover"></div>
+        <div class="gal g6 rv d2" role="img" aria-label="季節の焼き菓子" data-cap="季節の焼き菓子" style="background:#6a5230 url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&q=80&auto=format&fit=crop') center/cover"></div>
       </div>
     </div>
   </section>
 
-  <section class="story" id="story">
+  <section class="story" id="story" aria-labelledby="story-h">
     <div class="wrap">
       <div class="story-grid">
-        <div class="story-img rv" id="storyImg" style="background:#3c4528 url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=900&q=80&auto=format&fit=crop') center/cover"></div>
+        <div class="story-img rv" id="storyImg" role="img" aria-label="本のある栞珈琲の店内" style="background:#3c4528 url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=900&q=80&auto=format&fit=crop') center/cover"></div>
         <div class="story-txt">
           <span class="en rv">Our Story</span>
-          <h2 class="rv d1">「ただいま」と言える、<br>もう一つの居場所を。</h2>
+          <h2 class="rv d1" id="story-h">「ただいま」と言える、<br>もう一つの居場所を。</h2>
           <p class="rv d1">会社でも家でもない、ほっとできる第三の場所。栞珈琲は、そんな想いから2015年に小さく始めました。</p>
           <p class="rv d2">珈琲を淹れる時間も、本のページをめくる音も、ぜんぶ「余白」。慌ただしい毎日の中で、ここに来れば少しだけ呼吸が深くなる。そんなお店でありたいと思っています。</p>
           <p class="sign rv d2">— 店主 しおり</p>
@@ -263,9 +278,9 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:18px}
     </div>
   </section>
 
-  <section id="info">
+  <section id="info" aria-labelledby="info-h">
     <div class="wrap">
-      <div class="shead"><span class="en rv">Information</span><h2 class="rv d1">店舗情報</h2></div>
+      <div class="shead"><span class="en rv">Information</span><h2 class="rv d1" id="info-h">店舗情報</h2></div>
       <div class="info-grid info">
         <dl class="rv">
           <dt>店名</dt><dd>栞珈琲 -shiori coffee-</dd>
@@ -280,11 +295,11 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:18px}
     </div>
   </section>
 
-  <section class="cta" id="contact">
+  <section class="cta" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
-      <h2 class="rv">席のご予約・お問い合わせ</h2>
+      <h2 class="rv" id="contact-h">席のご予約・お問い合わせ</h2>
       <p class="rv d1">読書会・撮影でのご利用もご相談ください。お電話またはInstagramのDMで承ります。</p>
-      <a href="#" class="btn btn-fill rv d2" onclick="return false">Instagramでご予約</a>
+      <a href="#" class="btn btn-fill rv d2" onclick="return false" aria-disabled="true">Instagramでご予約</a>
     </div>
   </section>
 </main>
@@ -298,17 +313,54 @@ footer .cp{font-size:12px;color:#8a7c6c;margin-top:18px}
 </footer>
 
 <script>
-const hd=document.getElementById('hd');
-addEventListener('scroll',()=>hd.classList.toggle('scd',scrollY>30),{passive:true});
-const gnav=document.getElementById('gnav'),mt=document.getElementById('mtoggle');
-mt.addEventListener('click',()=>{gnav.classList.toggle('open');mt.classList.toggle('on');});
-gnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{gnav.classList.remove('open');mt.classList.remove('on');}));
-const rvs=[...document.querySelectorAll('.rv')];
-function rev(){const t=innerHeight*0.9;for(const el of rvs){if(el.classList.contains('in'))continue;if(el.getBoundingClientRect().top<t)el.classList.add('in');}}
-addEventListener('scroll',rev,{passive:true});addEventListener('resize',rev);rev();
-setTimeout(()=>rvs.forEach(el=>el.classList.add('in')),1600);
-const hp=document.getElementById('heroPhoto'),si=document.getElementById('storyImg');
-addEventListener('scroll',()=>{const y=scrollY;if(hp)hp.style.transform='translateY('+(y*0.06)+'px)';if(si){const r=si.getBoundingClientRect();si.style.transform='translateY('+((r.top-innerHeight/2)*-0.04)+'px)';}},{passive:true});
+(function(){
+  "use strict";
+  var SCROLL_SHRINK_PX=30;       // ヘッダー縮小を始めるスクロール量
+  var REVEAL_RATIO=0.9;          // 要素出現の判定（ビューポート高の割合）
+  var REVEAL_FALLBACK_MS=1600;   // 出現アニメの保険フォールバック
+  var HERO_PARALLAX=0.06;        // ヒーロー写真のパララックス係数
+  var STORY_PARALLAX=-0.04;      // 物語写真のパララックス係数
+
+  var hd=document.getElementById('hd');
+  if(hd){window.addEventListener('scroll',function(){hd.classList.toggle('scd',window.scrollY>SCROLL_SHRINK_PX);},{passive:true});}
+
+  var gnav=document.getElementById('gnav'),mt=document.getElementById('mtoggle');
+  if(gnav&&mt){
+    mt.addEventListener('click',function(){
+      gnav.classList.toggle('open');
+      mt.classList.toggle('on');
+      mt.setAttribute('aria-expanded',mt.classList.contains('on')?'true':'false');
+    });
+    gnav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){
+        gnav.classList.remove('open');
+        mt.classList.remove('on');
+        mt.setAttribute('aria-expanded','false');
+      });
+    });
+  }
+
+  var rvs=[].slice.call(document.querySelectorAll('.rv'));
+  function rev(){
+    var t=window.innerHeight*REVEAL_RATIO;
+    for(var i=0;i<rvs.length;i++){
+      var el=rvs[i];
+      if(el.classList.contains('in'))continue;
+      if(el.getBoundingClientRect().top<t)el.classList.add('in');
+    }
+  }
+  window.addEventListener('scroll',rev,{passive:true});
+  window.addEventListener('resize',rev);
+  rev();
+  window.setTimeout(function(){rvs.forEach(function(el){el.classList.add('in');});},REVEAL_FALLBACK_MS);
+
+  var hp=document.getElementById('heroPhoto'),si=document.getElementById('storyImg');
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(hp)hp.style.transform='translateY('+(y*HERO_PARALLAX)+'px)';
+    if(si){var r=si.getBoundingClientRect();si.style.transform='translateY('+((r.top-window.innerHeight/2)*STORY_PARALLAX)+'px)';}
+  },{passive:true});
+})();
 </script>
 </body>
 </html>

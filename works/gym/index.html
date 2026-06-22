@@ -5,13 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>REBUILD｜結果にコミットするパーソナルジム</title>
 <meta name="description" content="REBUILDは完全個室・マンツーマンのパーソナルジム。専属トレーナーと管理栄養士が、あなたの「なりたい」を最短で実現します。無料カウンセリング受付中。">
+<link rel="canonical" href="https://kazuma0604.github.io/Kojin-lab-site/works/gym/">
+<meta name="theme-color" content="#0a0b0e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%230a0b0e'/%3E%3Ctext%20x='50'%20y='72'%20font-family='Arial,sans-serif'%20font-size='64'%20font-weight='700'%20text-anchor='middle'%20fill='%23ccff33'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20180'%3E%3Crect%20width='180'%20height='180'%20rx='40'%20fill='%230a0b0e'/%3E%3Ctext%20x='90'%20y='128'%20font-family='Arial,sans-serif'%20font-size='112'%20font-weight='700'%20text-anchor='middle'%20fill='%23ccff33'%3EB%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="REBUILD｜結果にコミットするパーソナルジム">
+<meta property="og:description" content="完全個室・マンツーマンのパーソナルジム。専属トレーナーと管理栄養士が、あなたの「なりたい」を最短で実現します。無料カウンセリング受付中。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://kazuma0604.github.io/Kojin-lab-site/works/gym/">
+<meta property="og:site_name" content="REBUILD">
+<meta property="og:image" content="https://kazuma0604.github.io/Kojin-lab-site/ogp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="REBUILD｜結果にコミットするパーソナルジム">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="REBUILD｜結果にコミットするパーソナルジム">
+<meta name="twitter:description" content="完全個室・マンツーマンのパーソナルジム。専属トレーナーと管理栄養士が、あなたの「なりたい」を最短で実現します。無料カウンセリング受付中。">
+<meta name="twitter:image" content="https://kazuma0604.github.io/Kojin-lab-site/ogp.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0a0b0e; --bg2:#101216; --card:#15171d; --card2:#1b1e25; --line:#262931;
-  --txt:#f4f6f8; --muted:#9aa0ab; --lime:#ccff33; --lime-d:#a8d62f; --orange:#ff5a2c;
+  --txt:#f4f6f8; --muted:#9aa0ab; --lime:#ccff33; --orange:#ff5a2c;
   --disp:"Anton",sans-serif; --sans:"Noto Sans JP",sans-serif; --ease:cubic-bezier(.16,1,.3,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -145,6 +163,8 @@ footer .cp{color:#5e6470;font-size:12px;margin-top:14px}
   section{padding:80px 0}
   .sticky-cta{display:flex}
 }
+/* keyboard focus ring (mouse focus unchanged) */
+a:focus-visible,button:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:4px}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}*{animation:none!important}}
 </style>
 </head>
@@ -162,7 +182,7 @@ footer .cp{color:#5e6470;font-size:12px;margin-top:14px}
       <a href="#flow">流れ</a>
       <a href="#contact" class="gbtn">無料カウンセリング</a>
     </nav>
-    <button class="mtoggle" id="mtoggle" aria-label="メニュー"><span></span><span></span><span></span></button>
+    <button class="mtoggle" id="mtoggle" aria-label="メニュー" aria-controls="gnav" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -265,27 +285,55 @@ footer .cp{color:#5e6470;font-size:12px;margin-top:14px}
 </div>
 
 <script>
-const hd=document.getElementById('hd');
-addEventListener('scroll',()=>hd.classList.toggle('scd',scrollY>30),{passive:true});
-const gnav=document.getElementById('gnav'),mt=document.getElementById('mtoggle');
-mt.addEventListener('click',()=>{gnav.classList.toggle('open');mt.classList.toggle('on');});
-gnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{gnav.classList.remove('open');mt.classList.remove('on');}));
-// reveal
-const rvs=[...document.querySelectorAll('.rv')];
-function rev(){const t=innerHeight*0.9;for(const el of rvs){if(el.classList.contains('in'))continue;if(el.getBoundingClientRect().top<t)el.classList.add('in');}}
-addEventListener('scroll',rev,{passive:true});addEventListener('resize',rev);rev();
-setTimeout(()=>rvs.forEach(el=>el.classList.add('in')),1600);
-// counters (scroll-driven)
-const cnts=[...document.querySelectorAll('.cnt')];
-function cup(el){const t=+el.dataset.c,d=1300,s=performance.now();function f(n){const p=Math.min((n-s)/d,1);el.textContent=Math.round((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
-let counted=false;
-function chkCnt(){if(counted)return;const h=document.querySelector('.hero-stats');if(h&&h.getBoundingClientRect().top<innerHeight*0.85){counted=true;cnts.forEach(c=>cup(c));}}
-addEventListener('scroll',chkCnt,{passive:true});chkCnt();
-// card spotlight
-document.querySelectorAll('.rc').forEach(c=>c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');}));
-// sticky mobile cta
-const sc=document.getElementById('stickyCta');
-addEventListener('scroll',()=>{sc.classList.toggle('show',scrollY>innerHeight*0.7);},{passive:true});
+(function(){
+  'use strict';
+  // tuning constants (values unchanged)
+  var HEADER_SCROLL_THRESHOLD=30;     // px scrolled before header gets .scd
+  var REVEAL_VIEWPORT_FACTOR=0.9;     // reveal when element top < innerHeight * factor
+  var REVEAL_FALLBACK_MS=1600;        // force-reveal all after this delay
+  var COUNTER_DURATION_MS=1300;       // count-up animation duration
+  var COUNTER_TRIGGER_FACTOR=0.85;    // start counters when stats top < innerHeight * factor
+  var STICKY_CTA_FACTOR=0.7;          // show sticky CTA after scrolling innerHeight * factor
+
+  // header shrink on scroll
+  var hd=document.getElementById('hd');
+  if(hd){window.addEventListener('scroll',function(){hd.classList.toggle('scd',window.scrollY>HEADER_SCROLL_THRESHOLD);},{passive:true});}
+
+  // mobile nav toggle
+  var gnav=document.getElementById('gnav'),mt=document.getElementById('mtoggle');
+  if(gnav&&mt){
+    mt.addEventListener('click',function(){
+      var open=gnav.classList.toggle('open');
+      mt.classList.toggle('on');
+      mt.setAttribute('aria-expanded',open?'true':'false');
+    });
+    gnav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){
+      gnav.classList.remove('open');
+      mt.classList.remove('on');
+      mt.setAttribute('aria-expanded','false');
+    });});
+  }
+
+  // scroll reveal
+  var rvs=[...document.querySelectorAll('.rv')];
+  function rev(){var t=window.innerHeight*REVEAL_VIEWPORT_FACTOR;for(var i=0;i<rvs.length;i++){var el=rvs[i];if(el.classList.contains('in'))continue;if(el.getBoundingClientRect().top<t)el.classList.add('in');}}
+  window.addEventListener('scroll',rev,{passive:true});window.addEventListener('resize',rev);rev();
+  setTimeout(function(){rvs.forEach(function(el){el.classList.add('in');});},REVEAL_FALLBACK_MS);
+
+  // counters (scroll-driven)
+  var cnts=[...document.querySelectorAll('.cnt')];
+  function cup(el){var t=+el.dataset.c,d=COUNTER_DURATION_MS,s=performance.now();function f(n){var p=Math.min((n-s)/d,1);el.textContent=Math.round((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
+  var counted=false;
+  function chkCnt(){if(counted)return;var h=document.querySelector('.hero-stats');if(h&&h.getBoundingClientRect().top<window.innerHeight*COUNTER_TRIGGER_FACTOR){counted=true;cnts.forEach(function(c){cup(c);});}}
+  window.addEventListener('scroll',chkCnt,{passive:true});chkCnt();
+
+  // card spotlight
+  document.querySelectorAll('.rc').forEach(function(c){c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');});});
+
+  // sticky mobile cta
+  var sc=document.getElementById('stickyCta');
+  if(sc){window.addEventListener('scroll',function(){sc.classList.toggle('show',window.scrollY>window.innerHeight*STICKY_CTA_FACTOR);},{passive:true});}
+})();
 </script>
 </body>
 </html>

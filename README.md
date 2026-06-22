@@ -2,7 +2,7 @@
 
 LP・WordPress制作 / 個人開発の受託サイト（ポートフォリオ兼ランディングページ）。
 
-🔗 **公開URL**: https://kazuma0604.github.io/kojin-lab-site/
+🔗 **公開URL**: https://kazuma0604.github.io/Kojin-lab-site/
 
 ## 特徴
 

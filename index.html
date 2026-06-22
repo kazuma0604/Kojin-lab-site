@@ -19,6 +19,9 @@
 <meta name="twitter:title" content="個人開発Lab｜LP・WordPress制作">
 <meta name="twitter:description" content="Claude Codeで速く作って、後から自動化も足せる。中小企業・個人事業主のためのLP・WordPress制作。">
 <meta name="twitter:image" content="https://kazuma0604.github.io/Kojin-lab-site/ogp.png">
+<link rel="canonical" href="https://kazuma0604.github.io/Kojin-lab-site/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306070c'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='30' font-weight='700' text-anchor='middle' fill='%2338bdf8'%3E%26lt;/%26gt;%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#06070c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -33,7 +36,7 @@
 <header class="site-header" id="top">
   <div class="container header-inner">
     <a href="#top" class="brand">
-      <span class="brand-mark">&lt;/&gt;</span>
+      <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
       <span class="brand-name">個人開発<span class="accent-text">Lab</span></span>
     </a>
     <nav class="nav" id="nav" aria-label="メインナビ">
@@ -42,7 +45,7 @@
       <a href="#flow">制作の流れ</a>
       <a href="#contact" class="nav-cta">相談する</a>
     </nav>
-    <button class="nav-toggle" aria-label="メニュー" id="navToggle"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false" aria-controls="nav" id="navToggle"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
   </div>
 </header>
 
@@ -52,7 +55,7 @@
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="container hero-inner">
-      <p class="hero-eyebrow reveal"><span class="mono blink-cursor">$</span> LP・WordPress 制作 / 個人開発</p>
+      <p class="hero-eyebrow reveal"><span class="mono blink-cursor" aria-hidden="true">$</span> LP・WordPress 制作 / 個人開発</p>
       <h1 class="hero-title reveal">自分でアプリを作るエンジニアの、<br><span class="accent-text gradient-animate">Web制作屋</span>です。</h1>
       <p class="hero-sub reveal">
         自分でWebサービスやアプリを作って運用している個人開発者です。<br>
@@ -135,66 +138,66 @@
       <div class="works">
         <a class="work reveal" href="https://usaginavi.jp" target="_blank" rel="noopener">
           <div class="work-thumb work-thumb-usanavi">
-            <span class="work-emoji">🐰</span>
+            <span class="work-emoji" aria-hidden="true">🐰</span>
             <span class="work-shine"></span>
           </div>
           <div class="work-body">
-            <h3>うさナビ <span class="work-arrow">↗</span></h3>
+            <h3>うさナビ <span class="work-arrow" aria-hidden="true">↗</span></h3>
             <p>うさぎ飼いのための情報サイト。品種図鑑・食材判定60品目・全国の動物病院189件を掲載。PWA・ダークモード対応で実運用中。</p>
             <p class="work-tags"><span>情報サイト</span><span>PWA</span><span>個人開発</span></p>
           </div>
         </a>
         <a class="work reveal" href="https://kazuma0604.github.io/kakeibo/" target="_blank" rel="noopener">
           <div class="work-thumb work-thumb-kakeibo">
-            <span class="work-emoji">📊</span>
+            <span class="work-emoji" aria-hidden="true">📊</span>
             <span class="work-shine"></span>
           </div>
           <div class="work-body">
-            <h3>家計簿アプリ <span class="work-arrow">↗</span></h3>
+            <h3>家計簿アプリ <span class="work-arrow" aria-hidden="true">↗</span></h3>
             <p>登録不要・広告なしの家計簿。CSVインポート、カテゴリ別グラフ、月末予測まで。データは端末内のみで安心。</p>
             <p class="work-tags"><span>Webアプリ</span><span>Chart.js</span><span>OSS</span></p>
           </div>
         </a>
         <a class="work reveal" href="works/baby/index.html" target="_blank" rel="noopener">
           <div class="work-thumb work-thumb-baby">
-            <span class="work-emoji">👶</span>
+            <span class="work-emoji" aria-hidden="true">👶</span>
             <span class="work-shine"></span>
           </div>
           <div class="work-body">
-            <h3>赤ちゃんの記録 <span class="work-arrow">↗</span></h3>
+            <h3>赤ちゃんの記録 <span class="work-arrow" aria-hidden="true">↗</span></h3>
             <p>授乳・睡眠・おむつ・身長体重の記録から、発達マイルストーン・予防接種スケジュールまで。育児を一画面で支える育児記録アプリ。</p>
             <p class="work-tags"><span>Webアプリ</span><span>育児</span><span>個人開発</span></p>
           </div>
         </a>
         <a class="work reveal" href="works/travel/index.html" target="_blank" rel="noopener">
           <div class="work-thumb work-thumb-travel">
-            <span class="work-emoji">✈️</span>
+            <span class="work-emoji" aria-hidden="true">✈️</span>
             <span class="work-shine"></span>
           </div>
           <div class="work-body">
-            <h3>AI旅行プランナー <span class="work-arrow">↗</span></h3>
+            <h3>AI旅行プランナー <span class="work-arrow" aria-hidden="true">↗</span></h3>
             <p>行き先・日数・好みを入れると、AIが1日ごとの旅程を生成するWebアプリ。入力フォーム・生成演出・タイムライン表示まで実装。</p>
             <p class="work-tags"><span>Webアプリ</span><span>AI活用</span><span>個人開発</span></p>
           </div>
         </a>
         <a class="work reveal" href="works/cafe/index.html" target="_blank" rel="noopener">
           <div class="work-thumb work-thumb-cafe">
-            <span class="work-emoji">☕</span>
+            <span class="work-emoji" aria-hidden="true">☕</span>
             <span class="work-shine"></span>
           </div>
           <div class="work-body">
-            <h3>カフェのLP <span class="work-arrow">↗</span></h3>
+            <h3>カフェのLP <span class="work-arrow" aria-hidden="true">↗</span></h3>
             <p>自家焙煎カフェの集客LP。コンセプト・メニュー・店舗情報・予約導線まで。暖色×明朝で落ち着いた世界観に。</p>
             <p class="work-tags"><span>LP制作</span><span>飲食店</span><span>レスポンシブ</span></p>
           </div>
         </a>
         <a class="work reveal" href="works/gym/index.html" target="_blank" rel="noopener">
           <div class="work-thumb work-thumb-gym">
-            <span class="work-emoji">💪</span>
+            <span class="work-emoji" aria-hidden="true">💪</span>
             <span class="work-shine"></span>
           </div>
           <div class="work-body">
-            <h3>パーソナルジムのLP <span class="work-arrow">↗</span></h3>
+            <h3>パーソナルジムのLP <span class="work-arrow" aria-hidden="true">↗</span></h3>
             <p>結果にコミットするジムの集客LP。実績・料金プラン・無料カウンセリング導線。ダーク×ビビッドで力強く。</p>
             <p class="work-tags"><span>LP制作</span><span>ジム・サロン</span><span>CV設計</span></p>
           </div>
@@ -228,7 +231,7 @@
         参考サイトのURLや、今のサイトのスクショだけでもOK。ご相談・お見積りは無料です。
       </p>
       <div class="hero-actions reveal">
-        <a href="https://x.com/kojin_lab" target="_blank" rel="noopener" class="btn btn-primary btn-lg"><span>X（@kojin_lab）でDM相談</span></a>
+        <a href="https://x.com/kojin_lab" target="_blank" rel="noopener" class="btn btn-primary btn-lg" aria-label="X（@kojin_lab）でDM相談（新しいタブで開く）"><span>X（@kojin_lab）でDM相談</span></a>
       </div>
       <p class="contact-note reveal">できない案件もはっきりお伝えします。「できる／できない」の判断だけでもお役に立てます。</p>
     </div>
@@ -237,13 +240,13 @@
 </main>
 
 <a href="#contact" class="fab" id="fab" aria-label="相談する">
-  <span class="fab-icon">✉</span><span class="fab-text">相談する</span>
+  <span class="fab-icon" aria-hidden="true">✉</span><span class="fab-text">相談する</span>
 </a>
 
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="brand">
-      <span class="brand-mark">&lt;/&gt;</span>
+      <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
       <span class="brand-name">個人開発<span class="accent-text">Lab</span></span>
     </div>
     <p class="footer-text">LP・WordPress制作 / 個人開発<br>Claude Code で速く、後から自動化も。</p>
@@ -251,6 +254,6 @@
   </div>
 </footer>
 
-<script src="main.js"></script>
+<script src="main.js" defer></script>
 </body>
 </html>
