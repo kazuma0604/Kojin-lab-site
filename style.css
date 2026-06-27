@@ -172,6 +172,8 @@ a{color:inherit;text-decoration:none}
 .work-thumb-travel{background:radial-gradient(circle at 50% 30%,#1e3a8a,#0a1530)}
 .work-thumb-cafe{background:radial-gradient(circle at 40% 35%,#5c4636,#241812)}
 .work-thumb-gym{background:radial-gradient(circle at 65% 30%,#2f3a14,#101208)}
+.work-thumb-kinari{background:radial-gradient(circle at 40% 35%,#cbbaa6,#6b5b48)}
+.work-thumb-mono{background:radial-gradient(circle at 62% 28%,#33333a,#0a0a0b)}
 .work-emoji{font-size:72px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.5));transition:transform .5s var(--ease);z-index:1}
 .work:hover .work-emoji{transform:scale(1.15) rotate(-6deg)}
 .work-shine{position:absolute;top:0;left:-60%;width:50%;height:100%;background:linear-gradient(110deg,transparent,rgba(255,255,255,.08),transparent);transform:skewX(-20deg);transition:left .7s var(--ease)}
